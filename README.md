@@ -22,6 +22,7 @@ My dotfiles.
 - Add XFCE4 configuration files (`.gtkrc-2.0`, `.gtkrc-xfce` ?).
 - Check the `~/.zsh` folder.
 - Add aliases and settings for npm, nvm, ruby, jekyll etc.
+- Add `.functions` file.
 - Add `.zshenv`, `.zprofile`, `.zlogin` etc.
 - Check the zsh configuration frameworks (e.g.: [zimfw](https://github.com/zimfw/zimfw), [prezto](https://github.com/sorin-ionescu/prezto) etc).
 - Check the zsh prompts (e.g.: [spaceship](https://spaceship-prompt.sh/), [pure](https://github.com/sindresorhus/pure), [starship](https://starship.rs/), [powerlevel10k](https://github.com/romkatv/powerlevel10k)).
