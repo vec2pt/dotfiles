@@ -1,0 +1,27 @@
+# [alias]
+#     co = checkout
+[color]
+    ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    pager = true
+[core]
+    excludesfile = ~/.gitignore_global
+#     pager = less -FRSX
+#     pager = less -R
+#     editor = code --wait
+#     editor = vim
+# [credential]
+#     helper = cache --timeout=3600
+# [help]
+#     autocorrect = 1
+# [push]
+#     default = simple
+# [branch "master"]
+#     mergeoptions = --no-edit
+# [pull]
+#     rebase = false
+[init]
+    defaultBranch = main
