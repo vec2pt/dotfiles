@@ -1,0 +1,174 @@
+# Funcions
+
+function cleanup() {
+    echo "Remove unnecessary packages & Clean up apt cache"
+    sudo apt autoremove --purge && sudo apt clean
+    echo "Clean up Flatpak"
+    if dpkg -s flatpak &>/dev/null; then
+        flatpak uninstall --unused
+    fi
+    echo "Clean up Snap"
+    if dpkg -s snapd &>/dev/null; then
+        sudo apt autoremove --purge snapd
+    fi
+    echo "Clean up System Logs"
+    sudo journalctl --vacuum-time=3d
+    echo "Clean up .cache"
+    find ~/.cache -depth -type f -mtime +365 -delete
+    # echo "Clean up .thumbs"
+    # rm -rf ~/.thumbs/*
+    echo "Clean up temporary files from /tmp"
+    rm -rf /tmp/*
+    echo "Clear Trash folder"
+    rm -rf ~/.local/share/Trash/files/*
+}
+
+# https://ostechnix.com/a-bash-function-to-extract-file-archives-of-various-types/
+function extract() {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1     ;;
+            *.tar.gz)    tar xzf $1     ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       rar x $1       ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xf $1      ;;
+            *.tbz2)      tar xjf $1     ;;
+            *.tgz)       tar xzf $1     ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1    ;;
+            *)           echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+################################################################################
+
+# Aliases
+# TODO: https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
+# TODO: https://drasite.com/blog/Pimp%20my%20terminal#patched-fonts
+# TODO: git aliases
+# TODO: Network aliases
+# TODO: Quickly serve the current directory as HTTP
+# TODO: 'ls --group-directories-first' remove  'ls --color=auto'
+
+# ls aliases
+# alias ls='ls --group-directories-first'
+alias ll='ls -AlFh --group-directories-first'
+alias la='ls -A --group-directories-first'
+alias l='ls -CF --group-directories-first'
+alias l.='ls --group-directories-first -d .*' # hidden files
+command -v tree > /dev/null && alias tree='tree --filesfirst -C'
+
+
+# Aliases
+alias mv='mv -iv'
+alias rm='rm -i --preserve-root'
+alias cp='cp -iv'
+alias ln='ln -iv'
+alias mkdir='mkdir -v'
+alias rmdir='rmdir -v'
+# alias rcp='rsync -v --progress'
+# alias rmv='rsync -v --progress --remove-source-files'
+alias chgrp='chgrp -c --preserve-root'
+alias chmod='chmod -c --preserve-root'
+alias chown='chown -c --preserve-root'
+alias df='df -hT'
+alias du='du -ch'
+alias mount='mount |column -t'
+# alias bc='bc -l' # calculator
+alias diffside='diff --side-by-side'
+alias update='sudo apt-get update && sudo apt-get upgrade'
+alias count='find . -type f | wc -l'
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
+
+command -v ncdu > /dev/null && alias ncdu='ncdu --color dark'
+
+# cd aliases
+alias cd..='cd ..'
+alias cd~='cd ~'
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+# alias .....='cd ../../../../'
+# alias .4='cd ../../../../'
+# alias .5='cd ../../../../..'
+
+# Command short cuts
+alias c='clear'
+alias h='history'
+alias j='jobs -l'
+alias e='exit'
+
+# Directories
+alias docs='cd ~/Documents'
+alias github='cd ~/Documents/GitHub'
+alias downloads='cd ~/Downloads'
+
+# Other
+alias myip='curl ipinfo.io/ip; echo'
+alias weather='curl wttr.in/Warsaw; echo'
+alias nowtime='date +"%T"'
+alias nowday='date +%A'
+alias nowweek='date +%V'
+alias nowdate='date +"%d-%m-%Y"'
+alias unixtime='date +%s'
+
+# Network aliases
+# alias n="netstat -np tcp"
+# alias mtr="mtr -t"
+# alias nmap="nmap -v -v -T5"
+# alias nmapp="nmap -P0 -A --osscan_limit"
+# alias pktstat="sudo pktstat -tBFT"
+
+# Quickly serve the current directory as HTTP
+alias serve='python3 -m http.server' # OR 'ruby -run -e httpd . -p 8000'
+
+
+# Replace commands
+# command -v htop > /dev/null && alias top='htop'
+# command -v colordiff > /dev/null && alias diff='colordiff'
+# command -v exa > /dev/null && alias exa='exa --group-directories-first'
+# command -v exa > /dev/null && alias ls='exa'
+# command -v exa > /dev/null && alias ll='exa -lah'
+# command -v exa > /dev/null && alias la='exa -a'
+# command -v exa > /dev/null && alias tree='exa -T'
+# command -v batcat > /dev/null && alias bat='batcat --theme=ansi-dark'
+# command -v batcat > /dev/null && alias cat='batcat --pager=never'
+
+# Git
+# alias g="git"
+# alias git="nice git"
+# alias gsh="git stash"
+# alias gst="git status" # alias gst="git status --short --branch"
+# alias gsu="git submodule update --recursive --merge"
+# alias gdf="git diff" # alias gd="git diff"
+# alias gdt="git difftool"
+# alias glo="git log"
+# alias gps="git push" # alias gpu="git push"
+# alias gpl="git pull"
+# alias gco="git checkout" # alias gch="git checkout"
+# alias gci="git commit" # alias gc="git commit"
+# alias gad="git add" # alias ga="git add"
+# alias grm="git rm"
+# alias gmv="git mv"
+# alias gtg="git tag"
+# alias gbr="git branch" # alias gb="git branch"
+# alias gs="git svn"
+
+# ??????
+# alias gitstat 'git status -uno'
+# alias gpom="git pull origin master"
+# alias gpuom="git push origin master"
+# alias gnb="git checkout -b"
+# alias gac="git add . && git commit"
+# alias grs="git restore --staged ."
+# alias gre="git restore"
+# alias gr="git remote" # alias grm="git remote"
+# alias gcl="git clone"
+# alias glg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold green)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold yellow)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
+# alias gt="git ls-tree -r master --name-only"
+# alias gf="git fetch"
