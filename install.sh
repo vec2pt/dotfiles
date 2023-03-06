@@ -10,6 +10,7 @@ FILES_LN="
     profile
     zlogout
     zshrc
+    nvmrc
 "
 
 REPLACE_FILES_CP=false
