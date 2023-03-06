@@ -125,7 +125,8 @@ alias unixtime='date +%s'
 # alias pktstat="sudo pktstat -tBFT"
 
 # Quickly serve the current directory as HTTP
-alias serve='python3 -m http.server' # OR 'ruby -run -e httpd . -p 8000'
+alias serve='xdg-open http://0.0.0.0:8000/ && ruby -run -e httpd . -p 8000'
+alias servepy='xdg-open http://0.0.0.0:8000/ && python3 -m http.server'
 
 
 # Replace commands
