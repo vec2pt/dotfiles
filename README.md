@@ -21,7 +21,6 @@ My dotfiles.
 - Add vim, tmux, rofi etc configuration files.
 - Add XFCE4 configuration files (`.gtkrc-2.0`, `.gtkrc-xfce` ?).
 - Check the `~/.zsh` folder.
-- Add aliases and settings for npm, nvm, ruby, jekyll etc.
 - Add `.functions` file.
 - Add `.zshenv`, `.zprofile`, `.zlogin` etc.
 - Check the bash framework [oh-my-bash](https://github.com/ohmybash/oh-my-bash).
