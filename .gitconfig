@@ -9,19 +9,17 @@
     pager = true
 [core]
     excludesfile = ~/.gitignore_global
-#     pager = less -FRSX
-#     pager = less -R
-#     editor = code --wait
-#     editor = vim
-# [credential]
-#     helper = cache --timeout=3600
-# [help]
-#     autocorrect = 1
+    pager = less -FX
+    editor = code --wait
+[credential]
+    helper = cache --timeout=3600
+[help]
+	autocorrect = prompt
 # [push]
 #     default = simple
 # [branch "master"]
 #     mergeoptions = --no-edit
-# [pull]
-#     rebase = false
+[pull]
+    rebase = false
 [init]
     defaultBranch = main
