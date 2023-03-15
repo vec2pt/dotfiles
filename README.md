@@ -27,3 +27,4 @@ My dotfiles.
 - Check the zsh configuration frameworks (e.g.: [zimfw](https://github.com/zimfw/zimfw), [prezto](https://github.com/sorin-ionescu/prezto) etc).
 - Check the zsh frameworks/prompts (e.g.: [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh), [spaceship](https://spaceship-prompt.sh/), [pure](https://github.com/sindresorhus/pure), [starship](https://starship.rs/), [powerlevel10k](https://github.com/romkatv/powerlevel10k)).
 - Check the options for managing dotfiles with GNU stow.
+- Add `.termux/termux.properties` file. (?)
