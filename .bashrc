@@ -58,9 +58,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\w\[\033[00m\] \$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\w$(__git_ps1 " \[\033[1;37m\]on \[\033[1;35m\]%s")\n\[\033[0;32m\]\$\[\033[00m\] '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\w \$ '
+    PS1='${debian_chroot:+($debian_chroot)}\w$(__git_ps1 " on %s")\n\$ '
 fi
 unset color_prompt force_color_prompt
 

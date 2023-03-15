@@ -52,6 +52,12 @@ bindkey '^[[Z' undo                               # shift + tab undo last action
 # enable completion features
 autoload -Uz compinit
 compinit -d $HOME/.cache/.zcompdump
+# enable vcs_info
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+# setopt prompt_subst
+zstyle ':vcs_info:git:*' formats ' on %F{magenta}%b%f'
 # autoload bashcompinit
 # bashcompinit
 # source /path/to/your/bash_completion_file
@@ -126,14 +132,14 @@ if [ "$color_prompt" = yes ]; then
     # override default virtualenv indicator in prompt
     VIRTUAL_ENV_DISABLE_PROMPT=1
 
-    PROMPT='${debian_chroot:+($debian_chroot)}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{%(#.red.blue)}%~%b%F{reset} %(#.#.%%) '
+    PROMPT=$'${debian_chroot:+($debian_chroot)}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{%(#.red.blue)}%~%F{reset}${vcs_info_msg_0_}%b\n%F{green}%(#.#.%%)%f '
 
     # enable syntax-highlighting
     if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
         . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     fi
 else
-    PROMPT='${debian_chroot:+($debian_chroot)}%~ %(#.#.%%) '
+    PROMPT=$'${debian_chroot:+($debian_chroot)}%~${vcs_info_msg_0_}\n%(#.#.%%) '
 fi
 unset color_prompt force_color_prompt
 
