@@ -8,12 +8,27 @@ case $- in
       *) return;;
 esac
 
+# Bash settings
+# a command name that is the name of a directory is executed as if it were the argument to the cd command.
+# shopt -s autocd
+
+# minor errors in the spelling of a directory component will be corrected.
+shopt -s cdspell
+
+# shopt -s direxpand
+# shopt -s dirspell
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+# HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth:erasedups
+
+# save all lines of a multiple-line command in the same history entry.
+shopt -s cmdhist
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+shopt -s histverify
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
@@ -27,6 +42,15 @@ shopt -s checkwinsize
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
+
+# the echo builtin expands backslash-escape sequences by default
+# shopt -s xpg_echo
+
+# bash includes filenames beginning with a `.' in the results of  pathname  expansion.
+# shopt -s dotglob
+
+# bash matches filenames in a case-insensitive fashion when  performing  pathname  expansion
+shopt -s nocaseglob
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
