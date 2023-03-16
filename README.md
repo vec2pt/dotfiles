@@ -19,6 +19,8 @@ My dotfiles.
 
 - Update `.gitconfig` file.
 - Add vim, tmux, rofi etc configuration files.
+- Add onedrive settings.
+- Add vs code settings (?). Check HOME path (Windows).
 - Add XFCE4 configuration files (`.gtkrc-2.0`, `.gtkrc-xfce` ?).
 - Check the `~/.zsh` folder.
 - Add `.functions` file.
