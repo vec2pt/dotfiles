@@ -17,7 +17,6 @@ My dotfiles.
 
 ## TODO
 
-- Update `.gitconfig` file.
 - Add vim, tmux, rofi etc configuration files.
 - Add onedrive settings.
 - Add vs code settings (?). Check HOME path (Windows).

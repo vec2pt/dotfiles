@@ -141,61 +141,20 @@ alias servepy='xdg-open http://0.0.0.0:8000/ && python3 -m http.server'
 # command -v batcat > /dev/null && alias bat='batcat --theme=ansi-dark'
 # command -v batcat > /dev/null && alias cat='batcat --pager=never'
 
+# Git
+alias g="git"
+alias gco="git checkout"
+alias gst="git status -sb"
+alias gbr="git branch"
+alias gci="git commit"
+alias gaa="git add --all"
+alias glg="git log --graph --pretty=format:'%C(auto)%h -%d %s, %C(black)%cd%C(reset), %C(bold green)%an%C(reset)' --decorate --date=format:'%Y-%M-%d %H:%M%S' --abbrev-commit"
+
+alias gitweb="git instaweb -l --httpd=webrick"
+alias gitwebs="git instaweb -l --httpd=webrick --stop"
+
+
 ################################################################################
 
 # Personal Utilities
 alias passgen='python3 ~/Documents/GitHub/cli-utilities/passgen.py'
-
-# Git
-alias g="git"
-# alias git="nice git"
-# alias gsh="git stash"
-# alias gst="git status" # alias gst="git status --short --branch"
-# alias gsu="git submodule update --recursive --merge"
-# alias gdf="git diff" # alias gd="git diff"
-# alias gdt="git difftool"
-# alias glo="git log"
-# alias gps="git push" # alias gpu="git push"
-# alias gpl="git pull"
-# alias gco="git checkout" # alias gch="git checkout"
-# alias gci="git commit" # alias gc="git commit"
-# alias gad="git add" # alias ga="git add"
-# alias grm="git rm"
-# alias gmv="git mv"
-# alias gtg="git tag"
-# alias gbr="git branch" # alias gb="git branch"
-# alias gs="git svn"
-
-# ??????
-# alias gitstat 'git status -uno'
-# alias gpom="git pull origin master"
-# alias gpuom="git push origin master"
-# alias gnb="git checkout -b"
-# alias gac="git add . && git commit"
-# alias grs="git restore --staged ."
-# alias gre="git restore"
-# alias gr="git remote" # alias grm="git remote"
-# alias gcl="git clone"
-# alias glg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold green)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold yellow)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
-# alias gt="git ls-tree -r master --name-only"
-# alias gf="git fetch"
-
-
-################################################################################
-
-# Git aliases
-# alias gs='git status -sb'
-# alias gcc='git checkout'
-# alias gcm='git checkout master'
-# alias gaa='git add --all'
-# alias gc='git commit -m $2'
-# alias push='git push'
-# alias gpo='git push origin'
-# alias pull='git pull'
-# alias clone='git clone'
-# alias stash='git stash'
-# alias pop='git stash pop'
-# alias ga='git add'
-# alias gb='git branch'
-# alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-# alias gm='git merge'

@@ -1,5 +1,12 @@
-# [alias]
-#     co = checkout
+[alias]
+    co = checkout
+    st = status -sb
+    br = branch
+    ci = commit
+    aa = add --all
+
+    lg = log --graph --pretty=format:'%C(auto)%h -%d %s, %C(black)%cd%C(reset), %C(bold green)%an%C(reset)' --decorate --date=format:'%Y-%M-%d %H:%M%S' --abbrev-commit
+
 [color]
     ui = auto
     diff = auto
