@@ -115,7 +115,7 @@ alias weather='curl wttr.in/Warsaw; echo'
 alias nowtime='date +"%T"'
 alias nowday='date +%A'
 alias nowweek='date +%V'
-alias nowdate='date +"%d-%m-%Y"'
+alias nowdate='date +"%Y%m%d"'
 alias unixtime='date +%s'
 
 # Network aliases
@@ -158,3 +158,4 @@ alias gitwebs="git instaweb -l --httpd=webrick --stop"
 
 # Personal Utilities
 alias passgen='python3 ~/Documents/GitHub/cli-utilities/passgen.py'
+alias backuptousb='bash ~/Documents/GitHub/cli-utilities/backuptousb.sh'
