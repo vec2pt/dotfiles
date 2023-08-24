@@ -1,3 +1,6 @@
+[user]
+    name = vlmarch
+    email = 68401718+vlmarch@users.noreply.github.com
 [alias]
     co = checkout
     st = status -sb
@@ -20,8 +23,10 @@
     editor = code --wait
 [credential]
     helper = cache --timeout=3600
+# [diff]
+#    renames = copies
 [help]
-	autocorrect = prompt
+    autocorrect = prompt
 # [push]
 #     default = simple
 # [branch "master"]
