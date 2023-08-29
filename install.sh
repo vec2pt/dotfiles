@@ -31,6 +31,6 @@ for file in $FILES_LN; do
 done
 
 for file in $FILES_LN; do
-    path=$(pwd)/.$file
+    path=$(dirname "$0")/.$file
     ln -sv $path ~/.$file
 done
