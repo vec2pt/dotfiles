@@ -19,9 +19,10 @@ My dotfiles.
 
 - Add vim, tmux, rofi etc configuration files.
 - Add onedrive settings.
-- Add vs code settings (?). Check HOME path (Windows).
-- Add XFCE4 configuration files (`.gtkrc-2.0`, `.gtkrc-xfce` ?).
-- Check the `~/.zsh` folder.
+- Add vs code settings (?).
+- Add colors aliases:
+  - https://nick3499.medium.com/bash-echo-text-color-background-color-e8d8c41d5a91
+  - https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
 - Add `.functions` file.
 - Add `.zshenv`, `.zprofile`, `.zlogin` etc.
 - Check the bash framework [oh-my-bash](https://github.com/ohmybash/oh-my-bash).
