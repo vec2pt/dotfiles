@@ -28,9 +28,6 @@ for file in $FILES_LN; do
             exit 1
         fi
     fi
-done
-
-for file in $FILES_LN; do
     path=$(dirname "$0")/.$file
-    ln -sv $path ~/.$file
+    ln -fsv $path ~/.$file
 done
