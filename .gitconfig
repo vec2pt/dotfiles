@@ -22,7 +22,8 @@
     pager = less -FX
     editor = code --wait
 [credential]
-    helper = cache --timeout=3600
+    helper = store
+    # helper = cache --timeout=3600
 # [diff]
 #    renames = copies
 [help]
@@ -35,3 +36,5 @@
     rebase = false
 [init]
     defaultBranch = main
+# [filter "spacify"]
+#     clean = expand --tabs=4 --initial
