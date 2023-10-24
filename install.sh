@@ -8,6 +8,7 @@ FILES_LN="
     bashrc
     condarc
     profile
+    pylintrc
     zlogout
     zshrc
     nvmrc
