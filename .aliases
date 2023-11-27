@@ -156,6 +156,9 @@ alias gitwebs="git instaweb -l --httpd=webrick --stop"
 
 ################################################################################
 
+# Apps
+alias blender="gtk-launch blender"
+
 # Personal Utilities
 alias passgen='python3 ~/Documents/GitHub/cli-utilities/passgen.py'
 alias backuptousb='bash ~/Documents/GitHub/cli-utilities/backuptousb.sh'
