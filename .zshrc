@@ -220,6 +220,11 @@ if [ -f $HOME/.zsh/spaceship/spaceship.zsh ]; then
     SPACESHIP_DIR_COLOR=blue
 fi
 
+# enable zsh-shift-select https://github.com/jirutka/zsh-shift-select
+if [ -f $HOME/.zsh/zsh-shift-select/zsh-shift-select.plugin.zsh ]; then
+    . $HOME/.zsh/zsh-shift-select/zsh-shift-select.plugin.zsh
+fi
+
 ################################################################################
 
 # >>> conda initialize >>>
