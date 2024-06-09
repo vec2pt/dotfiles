@@ -1,4 +1,4 @@
 auto_activate_base: false
 # channel_priority: disabled
-allow_conda_downgrades: true
-solver: libmamba
+# allow_conda_downgrades: true
+# solver: libmamba
