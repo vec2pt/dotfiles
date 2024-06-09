@@ -1,34 +1,29 @@
 #!/bin/bash
 
-DOTFILES_ARCHIVE_DIR=~/dotfiles_archive
+DOTFILES_ARCHIVE_DIR="$HOME/dotfiles_archive"
+ZDOTDIR="$HOME/.zsh"
+
+# https://stackoverflow.com/questions/59895/how-do-i-get-the-directory-where-a-bash-script-is-located-from-within-the-script
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 FILES_LN="
-    aliases
-    bash_logout
-    bashrc
-    condarc
-    profile
-    pylintrc
-    zlogout
-    zshrc
-    nvmrc
-    gitconfig
-    gitignore_global
+    .zsh/.aliases
+    .zsh/.zshrc
+    .zshenv
+    .condarc
+    .pylintrc
+    .gitconfig
 "
 
-if [ ! -d "$DIRECTORY" ]; then
-    mkdir -pv $DOTFILES_ARCHIVE_DIR
-fi
+mkdir -pv $DOTFILES_ARCHIVE_DIR
+mkdir -pv $DOTFILES_ARCHIVE_DIR/.zsh
+mkdir -pv $ZDOTDIR
+mkdir -pv "$ZDOTDIR/plugins"
+
 
 for file in $FILES_LN; do
-    if [ -f  ~/.$file ]; then
-        if [ ! -f  $DOTFILES_ARCHIVE_DIR/.$file ]; then
-            mv -v ~/.$file $DOTFILES_ARCHIVE_DIR
-        else
-            echo ERROR! .${file} already exists in ${DOTFILES_ARCHIVE_DIR}
-            exit 1
-        fi
+    if [ -f  ~/$file ]; then
+        mv -v ~/$file $DOTFILES_ARCHIVE_DIR/$file`date +"-%Y%m%d"`
     fi
-    path=$(dirname "$0")/.$file
-    ln -fsv $path ~/.$file
+    ln -fsv $SCRIPT_DIR/$file ~/$file
 done
