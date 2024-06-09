@@ -3,7 +3,7 @@
 # Useful links
 # https://thevaluable.dev/zsh-install-configure-mouseless/
 # https://thevaluable.dev/zsh-completion-guide-examples/
-# https://zsh.sourceforge.io/Doc/Release/Options.html#Options
+# https://drasite.com/blog/Pimp%20my%20terminal
 #
 ##############################################################################
 
@@ -11,26 +11,51 @@
 # Settings
 ##############################################################################
 
-setopt autocd              # change directory just by typing its name
-setopt autolist            # Automatically list choices on an ambiguous completion.
-# setopt autopushd         # cd push the old directory onto the directory stack
-# setopt autoresume        # Treat single word simple commands without redirection as candidates for resumption of an existing job.
-# setopt cdablevars        # If the argument to a cd command is not a directory, and does not begin with a slash, try to expand the expression as if it were preceded by a ‘~’
-# setopt correct           # auto correct mistakes
-# setopt correctall
-setopt globdots            # Do not require a leading ‘.’ in a filename to be matched explicitly.
-setopt interactivecomments # allow comments in interactive mode
-setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
-setopt nonomatch           # hide error message if there is no match for the pattern
-setopt notify              # report the status of background jobs immediately
-# setopt nullglob
-setopt numericglobsort     # sort filenames numerically when it makes sense
-setopt promptsubst         # enable command substitution in prompt
-# setopt rcquotes          # Allow the character sequence ‘’’’ to signify a single quote within singly quoted strings.
-# setopt recexact
+# https://zsh.sourceforge.io/Doc/Release/Options.html#Options
 
-unsetopt autoparamslash
-unsetopt beep              # turn off all beeps
+# Changing Directories
+setopt AUTO_CD              # change directory just by typing its name
+# setopt AUTO_PUSHD         # cd push the old directory onto the directory stack
+# setopt CDABLE_VARS        # If the argument to a cd command is not a directory, and does not begin with a slash, try to expand the expression as if it were preceded by a ‘~’
+
+# Completion
+setopt AUTO_LIST            # Automatically list choices on an ambiguous completion.
+unsetopt AUTO_PARAM_SLASH
+
+# Job Control
+# setopt AUTO_RESUME        # Treat single word simple commands without redirection as candidates for resumption of an existing job.
+setopt NOTIFY              # report the status of background jobs immediately
+
+# Input/Output
+# setopt CORRECT           # auto correct mistakes
+# setopt CORRECT_ALL
+# setopt RC_QUOTES          # Allow the character sequence ‘’’’ to signify a single quote within singly quoted strings.
+
+# Expansion and Globbing
+setopt GLOB_DOTS            # Do not require a leading ‘.’ in a filename to be matched explicitly.
+setopt INTERACTIVE_COMMENTS # allow comments in interactive mode
+setopt MAGIC_EQUAL_SUBST     # enable filename expansion for arguments of the form ‘anything=expression’
+setopt NO_NOMATCH           # hide error message if there is no match for the pattern
+setopt NUMERIC_GLOB_SORT     # sort filenames numerically when it makes sense
+# setopt NULL_GLOB
+
+# Prompting
+setopt PROMPT_SUBST         # enable command substitution in prompt
+
+# Zle
+unsetopt BEEP              # turn off all beeps
+
+# History
+HISTFILE=$ZDOTDIR/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt HIST_EXPIRE_DUPS_FIRST # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt HIST_IGNORE_DUPS       # ignore duplicated commands history list
+# setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE      # ignore commands that start with space
+setopt HIST_VERIFY            # show command with history expansion to user before running it
+# setopt SHARE_HISTORY
+setopt HIST_REDUCE_BLANKS   # Remove superfluous blanks from each command line being added to the history list.
 
 
 # Configure keybindings
@@ -79,16 +104,6 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # Completion Matching Control
 # zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-# History
-HISTFILE=$ZDOTDIR/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt hist_ignore_dups       # ignore duplicated commands history list
-# setopt hist_ignore_all_dups
-setopt hist_ignore_space      # ignore commands that start with space
-setopt hist_verify            # show command with history expansion to user before running it
 
 
 # Configure `time` format (ex. `time sleep 2``)
