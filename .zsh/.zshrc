@@ -55,9 +55,9 @@ autoload -Uz compinit
 compinit -d $HOME/.cache/.zcompdump
 
 # Version control systems info
-enable vcs_info
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git
+# enable vcs_info
+# autoload -Uz vcs_info
+# zstyle ':vcs_info:*' enable git
 # precmd_vcs_info() { vcs_info }
 # precmd_functions+=( precmd_vcs_info )
 # zstyle ':vcs_info:git:*' formats '%b'
