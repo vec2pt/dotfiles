@@ -143,6 +143,9 @@ precmd () {print -Pn "\e]0;%~\a"}
 # Colors
 ##############################################################################
 
+# Source https://github.com/nordtheme/dircolors/tree/develop
+test -r $ZDOTDIR/.dir_colors && eval $(dircolors $ZDOTDIR/.dir_colors)
+
 # fix ls color for folders with 777 permissions
 export LS_COLORS=$LS_COLORS':tw=36;01'
 export LS_COLORS=$LS_COLORS':ow=36;01'

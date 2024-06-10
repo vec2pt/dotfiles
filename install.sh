@@ -7,8 +7,9 @@ ZDOTDIR="$HOME/.zsh"
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 FILES_LN="
-    .zsh/.aliases
     .zsh/.zshrc
+    .zsh/.aliases
+    .zsh/.dir_colors
     .zshenv
     .condarc
     .pylintrc
