@@ -3,12 +3,12 @@
 function cleanup() {
     echo "Remove unnecessary packages & Clean up apt cache"
     sudo apt autoremove --purge && sudo apt clean
-    echo "Clean up Flatpak"
     if dpkg -s flatpak &>/dev/null; then
+        echo "Clean up Flatpak"
         flatpak uninstall --unused
     fi
-    echo "Clean up Snap"
     if dpkg -s snapd &>/dev/null; then
+        echo "Clean up Snap"
         sudo apt autoremove --purge snapd
     fi
     echo "Clean up System Logs"
@@ -45,7 +45,12 @@ function extract() {
     fi
 }
 
-################################################################################
+
+# TODO
+# rustup update
+# nvm ????
+
+###############################################################################
 
 # Aliases
 # TODO: https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
@@ -53,7 +58,6 @@ function extract() {
 # TODO: git aliases
 # TODO: Network aliases
 # TODO: Quickly serve the current directory as HTTP
-# TODO: 'ls --group-directories-first' remove  'ls --color=auto'
 
 # ls aliases
 # alias ls='ls --group-directories-first'
@@ -101,13 +105,6 @@ alias c='clear'
 alias h='history'
 alias j='jobs -l'
 alias e='exit'
-alias cbashhist='echo "" > ~/.bash_history'
-alias czshhist='echo "" > ~/.zsh_history'
-
-# Directories
-alias docs='cd ~/Documents'
-alias github='cd ~/Documents/GitHub'
-alias downloads='cd ~/Downloads'
 
 # Other
 alias myip='curl ipinfo.io/ip; echo'
@@ -117,6 +114,12 @@ alias nowday='date +%A'
 alias nowweek='date +%V'
 alias nowdate='date +"%Y%m%d"'
 alias unixtime='date +%s'
+
+# Python
+alias python="python3"
+alias activate='source .venv/bin/activate'
+alias newvenv='python3 -m venv .venv && source .venv/bin/activate && [ ! -f requirements.txt ] || pip install -r requirements.txt'
+
 
 # Network aliases
 # alias n="netstat -np tcp"
@@ -154,10 +157,7 @@ alias gitweb="git instaweb -l --httpd=webrick"
 alias gitwebs="git instaweb -l --httpd=webrick --stop"
 
 
-################################################################################
-
-# Apps
-alias blender4="gtk-launch blender4"
+###############################################################################
 
 # Personal Utilities
 alias passgen='python3 ~/Documents/GitHub/cli-utilities/passgen.py'

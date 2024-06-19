@@ -46,7 +46,7 @@ setopt PROMPT_SUBST         # enable command substitution in prompt
 unsetopt BEEP              # turn off all beeps
 
 # History
-HISTFILE=$ZDOTDIR/.histfile
+HISTFILE=$HOME/.cache/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 setopt HIST_EXPIRE_DUPS_FIRST # delete duplicates first when HISTFILE size exceeds HISTSIZE
@@ -117,7 +117,7 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 ##############################################################################
 
 # hide EOL sign ('%')
-# export PROMPT_EOL_MARK=""
+export PROMPT_EOL_MARK=""
 
 # Simple prompt
 autoload -U colors && colors
@@ -125,13 +125,18 @@ autoload -Uz promptinit
 promptinit
 PS1=$'%B%F{blue}%~%f\n%F{green}%%%f%b '
 
-# Spaceship prompt
-if [ -f $ZDOTDIR/plugins/spaceship/spaceship.zsh ]; then
-    . $ZDOTDIR/plugins/spaceship/spaceship.zsh
+if [ -x "$(command -v starship)" ]; then
+    # Starship prompt
+    eval "$(starship init zsh)"
+else
+    # Spaceship prompt
+    if [ -f $ZDOTDIR/plugins/spaceship/spaceship.zsh ]; then
+        . $ZDOTDIR/plugins/spaceship/spaceship.zsh
 
-    SPACESHIP_PROMPT_ADD_NEWLINE=false
-    SPACESHIP_ASYNC_SYMBOL=''
-    SPACESHIP_DIR_COLOR=blue
+        SPACESHIP_PROMPT_ADD_NEWLINE=false
+        SPACESHIP_ASYNC_SYMBOL=''
+        SPACESHIP_DIR_COLOR=blue
+    fi
 fi
 
 # Title
@@ -208,17 +213,17 @@ fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('${HOME}/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "${HOME}/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "${HOME}/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="${HOME}/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('${HOME}/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "${HOME}/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "${HOME}/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="${HOME}/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
 # Install Ruby Gems to ~/.gems
@@ -228,8 +233,6 @@ export PATH="$HOME/.gems/bin:$PATH"
 # Install nvm (Node Version Manager)
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 
 # Install Cargo / Rust
 [ -s "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
