@@ -45,19 +45,35 @@ function extract() {
     fi
 }
 
+function reload() {
+    if [ -n "$BASH_VERSION" ]; then
+        # Reload bash settings
+        # include .bashrc if it exists
+        if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+        fi
+    elif [ -n "$ZSH_VERSION" ]; then
+        # Reload zsh settings
+        # include .zshrc if it exists
+        if [ -f "$ZDOTDIR/.zshrc" ]; then
+        . "$ZDOTDIR/.zshrc"
+        fi
+    fi
+}
 
 # TODO
-# rustup update
-# nvm ????
+# function update() {
+#     nvm install --lts
+#     rustup update
+#     sudo apt-get update && sudo apt-get upgrade
+# }
 
 ###############################################################################
 
 # Aliases
-# TODO: https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
-# TODO: https://drasite.com/blog/Pimp%20my%20terminal#patched-fonts
-# TODO: git aliases
-# TODO: Network aliases
-# TODO: Quickly serve the current directory as HTTP
+# More inspirations
+# https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
+# https://drasite.com/blog/Pimp%20my%20terminal#patched-fonts
 
 # ls aliases
 # alias ls='ls --group-directories-first'
@@ -66,7 +82,6 @@ alias lls='ls -AlFh --sort=size'
 alias llt='ls -AlFh --sort=time'
 alias la='ls -A --group-directories-first'
 alias l='ls -CF --group-directories-first'
-alias l.='ls --group-directories-first -d .*' # hidden files
 command -v tree > /dev/null && alias tree='tree --filesfirst -C'
 
 
@@ -87,9 +102,7 @@ alias du='du -ch'
 alias mount='mount |column -t'
 # alias bc='bc -l' # calculator
 alias diffside='diff --side-by-side'
-alias update='sudo apt-get update && sudo apt-get upgrade'
 alias count='find . -type f | wc -l'
-alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 
 command -v ncdu > /dev/null && alias ncdu='ncdu --color dark'
 
@@ -106,6 +119,10 @@ alias h='history'
 alias j='jobs -l'
 alias e='exit'
 
+# systemctl aliases
+alias reboot='systemctl reboot'
+alias poweroff='systemctl poweroff'
+
 # Other
 alias myip='curl ipinfo.io/ip; echo'
 alias weather='curl wttr.in/Warsaw; echo'
@@ -121,7 +138,7 @@ alias activate='source .venv/bin/activate'
 alias newvenv='python3 -m venv .venv && source .venv/bin/activate && [ ! -f requirements.txt ] || pip install -r requirements.txt'
 
 
-# Network aliases
+# Network aliases (TODO)
 # alias n="netstat -np tcp"
 # alias mtr="mtr -t"
 # alias nmap="nmap -v -v -T5"
