@@ -1,6 +1,6 @@
 # dotfiles
 
-NOTE: This is the repository with my ([vec2pt](https://github.com/vec2pt)) persanal dotfiles. Not all configurations were written by myself, some of the settings were modelled on dotfiles available on GitHub.
+NOTE: This repository include my ([vec2pt](https://github.com/vec2pt)) persanal dotfiles. Not all configurations were written by myself, some of the settings were based on dotfiles available on GitHub.
 
 ## Installation
 
