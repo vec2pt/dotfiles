@@ -10,7 +10,7 @@ esac
 
 # Bash settings
 # a command name that is the name of a directory is executed as if it were the argument to the cd command.
-# shopt -s autocd
+shopt -s autocd
 
 # minor errors in the spelling of a directory component will be corrected.
 shopt -s cdspell
@@ -134,9 +134,9 @@ fi
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-if [ -f $HOME/.aliases ]; then
-    . $HOME/.aliases
+# Alias definitions (temporary). TODO!!
+if [ -f $HOME/.config/zsh/.aliases ]; then
+    . $HOME/.config/zsh/.aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -175,24 +175,24 @@ NC='\e[0m'
 ################################################################################
 
 # Welcome screen
-echo -e " $GREEN$(hostname)@$USER$NC | $BLUE$0$NC | $(nowdate) "
-echo
+# echo -e " $GREEN$(hostname)@$USER$NC | $BLUE$0$NC | $(nowdate) "
+# echo
 
 ################################################################################
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "$HOME/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="$HOME/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
 # Install Ruby Gems to ~/.gems
