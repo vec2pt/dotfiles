@@ -31,9 +31,9 @@ shopt -s histappend
 shopt -s histverify
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTFILE=$HOME/.cache/.bash_history
 HISTSIZE=1000
 HISTFILESIZE=2000
-HISTFILE="$HOME/.bash_history"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
