@@ -17,6 +17,7 @@ stow -t $HOME zsh git starship pylint
 
 - Check unused dotfiles: bash, nano, conda, pylint.
 - Add nvim, vim, rofi etc configuration files.
+- Test [micro](https://github.com/zyedidia/micro) dotfiles.
 - Add onedrive settings.
 - Add vs code settings (?).
 - Add colors aliases:
