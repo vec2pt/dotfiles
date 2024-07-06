@@ -91,8 +91,8 @@ compinit -d $HOME/.cache/.zcompdump
 # zstyle ':completion:*' use-cache on
 # zstyle ':completion:*' cache-path "$HOME/.cache/.zcompcache"
 
-# zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*' menu select=8 select=long
+zstyle ':completion:*' menu select
+# zstyle ':completion:*' menu select=8 select=long
 
 # Defining the Completers
 zstyle ':completion:*' completer _expand _complete _correct _approximate
