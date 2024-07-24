@@ -145,7 +145,7 @@ alias ....='cd ../../../../'
 alias c='clear'
 alias h='history'
 alias j='jobs -l'
-alias e='exit'
+alias q='exit'
 
 # systemctl aliases
 alias reboot='systemctl reboot'
