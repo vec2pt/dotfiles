@@ -186,8 +186,10 @@ alias servepy='xdg-open http://0.0.0.0:8000/ && python3 -m http.server'
 # command -v exa > /dev/null && alias ll='exa -lah'
 # command -v exa > /dev/null && alias la='exa -a'
 # command -v exa > /dev/null && alias tree='exa -T'
+command -v batcat > /dev/null && alias bat='batcat'
 # command -v batcat > /dev/null && alias bat='batcat --theme=ansi-dark'
 # command -v batcat > /dev/null && alias cat='batcat --pager=never'
+command -v fdfind > /dev/null && alias fd='fdfind'
 
 # Git
 alias g="git"

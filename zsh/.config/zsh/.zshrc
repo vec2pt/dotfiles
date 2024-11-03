@@ -187,6 +187,10 @@ fi
 # Extensions
 ##############################################################################
 
+# Config `bat`
+export BAT_THEME="base16"
+export BAT_STYLE="numbers,changes"
+
 # enable syntax-highlighting
 if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
