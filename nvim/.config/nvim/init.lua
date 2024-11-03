@@ -3,6 +3,8 @@
 -- https://github.com/agalea91/zazencodes-youtube/tree/main/src/neovim-lazy-ide-2024
 -- https://www.youtube.com/watch?v=VljhZ0e9zGE
 -- https://www.youtube.com/watch?v=KYDG3AHgYEs
+-- https://github.com/LazyVim
+-- https://github.com/LunarVim/Neovim-from-scratch
 
 require('config')
 require('autocmd')
