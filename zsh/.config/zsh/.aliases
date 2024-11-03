@@ -163,7 +163,7 @@ alias unixtime='date +%s'
 # Python
 alias python="python3"
 alias activate='source .venv/bin/activate'
-alias newvenv='python3 -m venv .venv && source .venv/bin/activate && [ ! -f requirements.txt ] || pip install -r requirements.txt'
+alias newvenv='python3 -m venv .venv && source .venv/bin/activate && [ ! -f requirements.txt ] || pip install -r requirements.txt && [ ! -f pyproject.toml ] || pip install -e .'
 
 
 # Network aliases (TODO)
