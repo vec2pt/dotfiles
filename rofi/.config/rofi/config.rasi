@@ -3,9 +3,15 @@
 /*Dracula theme based on the Purple official rofi theme*/
 
 configuration {
-    show-icons:      true;
-    display-drun:    "";
+    modes: "window,drun,run,ssh,combi";
+    combi-modes: [window,drun,ssh];
+    show-icons: true;
+    display-window: "";
+    display-drun: "";
     disable-history: false;
+    terminal: "alacritty";
+    me-select-entry: "MousePrimary";
+    me-accept-entry: "!MousePrimary";
 }
 
 * {

@@ -7,44 +7,77 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "ui_font_family": "Ubuntu",
+  // "ui_font_family": "Ubuntu",
+  "icon_theme": "Zed (Default)",
   "ui_font_size": 16,
   "buffer_font_family": "Hack Nerd Font",
-  "buffer_font_size": 14,
+  "buffer_font_size": 14.0,
+  "buffer_font_weight": 100,
   "buffer_line_height": "comfortable",
+  "current_line_highlight": "gutter",
   "theme": {
     "mode": "dark",
     "light": "One Light",
     "dark": "One Dark"
   },
+  "experimental.theme_overrides": {
+    "syntax": {
+      "comment": {
+        "font_style": "italic"
+      }
+      // "link_uri": { "font_style": "oblique" }
+    },
+    "editor.invisible": "#ABB2BF26",
+    "editor.indent_guide": "#ABB2BF26",
+    "editor.indent_guide_active": "#626772",
+    "tab_bar.background": "#21252B",
+    "panel.background": "#21252B",
+    "title_bar.background": "#21252B",
+    "title_bar.inactive_background": "#21252B",
+    "status_bar.background": "#21252B",
+    "tab.inactive_background": "#21252B",
+    "scrollbar.thumb.background": "#4E566680",
+    "scrollbar.track.border": "#0000",
+    "border": "#181A1F",
+    "players": [
+      {
+        "selection": "#3E4451"
+      }
+    ]
+  },
   "telemetry": {
     "diagnostics": false,
     "metrics": false
   },
-
+  "extend_comment_on_newline": false,
   "show_wrap_guides": true,
   "wrap_guides": [80],
   "soft_wrap": "editor_width",
-
+  "show_whitespaces": "boundary",
+  // "format_on_save": "language_server",
+  // "formatter": "language_server",
   "vim_mode": false,
-  "vim": { "use_system_clipboard": "always" },
-
+  "vim": {
+    "use_system_clipboard": "always"
+  },
   "auto_install_extensions": {
     "html": true,
     "lua": true,
     "toml": true
   },
-  "show_whitespaces": "boundary",
+  "terminal": {
+    "blinking": "on",
+    "cursor_shape": "bar"
+  },
   "toolbar": {
     "breadcrumbs": false,
     "quick_actions": false,
     "selections_menu": false
   },
   "tab_bar": {
-    // Whether or not to show the tab bar in the editor
     "show": true,
-    // Whether or not to show the navigation history buttons.
-    "show_nav_history_buttons": false
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false
   },
   "tabs": {
     "git_status": true,
@@ -52,7 +85,7 @@
   },
   "features": {
     "copilot": false,
-    "inline_completion_provider": "none"
+    "edit_prediction_provider": "none"
   },
   "assistant": {
     "default_model": {
@@ -66,26 +99,36 @@
     "provider": null,
     "version": "2"
   },
-
   "collaboration_panel": {
     "button": false
   },
   "chat_panel": {
-    "button": false
+    "button": "never"
   },
-
   "project_panel": {
-    // "button": false,
+    "button": false,
     "folder_icons": false,
-    "indent_size": 25,
+    "entry_spacing": "standard",
+    "indent_size": 20,
     "auto_fold_dirs": true,
     "scrollbar": {
       "show": "never"
     }
   },
+  "notification_panel": { "button": false },
   "languages": {
     "Markdown": {
       "tab_size": 4
+    },
+    "C++": {
+      "tab_size": 2,
+      "language_servers": ["clangd"],
+      "formatter": "language_server",
+      "format_on_save": "language_server"
+    },
+    "Python": {
+      "formatter": "language_server",
+      "format_on_save": "language_server"
     }
   }
 }
