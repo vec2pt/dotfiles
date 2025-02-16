@@ -223,12 +223,12 @@ fi
 ################################################################################
 
 # Install Ruby Gems to ~/.gems
-export GEM_HOME="$HOME/.gems"
-export PATH="$HOME/.gems/bin:$PATH"
+export GEM_HOME="$(gem env user_gemhome)"
+export PATH="$PATH:$GEM_HOME/bin"
 
 # Install nvm (Node Version Manager)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # Install Cargo / Rust
 [ -s "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
