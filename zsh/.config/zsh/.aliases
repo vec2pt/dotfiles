@@ -209,3 +209,4 @@ alias gitwebs="git instaweb -l --httpd=webrick --stop"
 # Personal Utilities
 alias passgen='python3 ~/Documents/GitHub/cli-utilities/passgen.py'
 alias backuptousb='bash ~/Documents/GitHub/cli-utilities/backuptousb.sh'
+alias hex2rgb='python3 ~/Documents/GitHub/cli-utilities/hex2rgb.py'
