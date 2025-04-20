@@ -1,14 +1,53 @@
+/* :root {
+    --base00: #282c34;
+    --base01: #353b45;
+    --base02: #3e4451;
+    --base03: #545862;
+    --base04: #565c64;
+    --base05: #abb2bf;
+    --base06: #b6bdca;
+    --base07: #c8ccd4;
+    --base08: #e06c75;
+    --base09: #d19a66;
+    --base0A: #e5c07b;
+    --base0B: #98c379;
+    --base0C: #56b6c2;
+    --base0D: #61afef;
+    --base0E: #c678dd;
+    --base0F: #be5046;
+} */
+
+@define-color base00 #282c34;
+@define-color base01 #353b45;
+@define-color base02 #3e4451;
+@define-color base03 #545862;
+@define-color base04 #565c64;
+@define-color base05 #abb2bf;
+@define-color base06 #b6bdca;
+@define-color base07 #c8ccd4;
+@define-color base08 #e06c75;
+@define-color base09 #d19a66;
+@define-color base0A #e5c07b;
+@define-color base0B #98c379;
+@define-color base0C #56b6c2;
+@define-color base0D #61afef;
+@define-color base0E #c678dd;
+@define-color base0F #be5046;
+
 * {
-    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+    font-family:
+        "Noto Sans Mono", "Font Awesome 6 Free", "Font Awesome 6 Brands",
+        monospace;
     font-size: 13px;
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
+    /* background-color: rgba(43, 48, 59, 0.5); */
+    background-color: @base00;
+    border-bottom: 3px solid @base03;
+    color: @base06;
     transition-property: background-color;
-    transition-duration: .5s;
+    transition-duration: 0.5s;
 }
 
 window#waybar.hidden {
@@ -24,14 +63,14 @@ window#waybar.solo {
 }
 */
 
-window#waybar.termite {
-    background-color: #3F3F3F;
+/* window#waybar.termite {
+    background-color: #3f3f3f;
 }
 
 window#waybar.chromium {
     background-color: #000000;
     border: none;
-}
+} */
 
 button {
     /* Use box-shadow instead of border so the text isn't offset */
@@ -44,12 +83,7 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
-/* you can set a style on hover for any module like this */
-#pulseaudio:hover {
-    background-color: #a37800;
+    box-shadow: inset 0 -3px @base01;
 }
 
 #workspaces button {
@@ -63,7 +97,7 @@ button:hover {
 }
 
 #workspaces button.focused {
-    background-color: #64727D;
+    background-color: #64727d;
     box-shadow: inset 0 -3px #ffffff;
 }
 
@@ -72,7 +106,7 @@ button:hover {
 }
 
 #mode {
-    background-color: #64727D;
+    background-color: #64727d;
     box-shadow: inset 0 -3px #ffffff;
 }
 
@@ -93,8 +127,8 @@ button:hover {
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
-    padding: 0 10px;
-    color: #ffffff;
+    padding: 0 5px;
+    color: @base06;
 }
 
 #window,
@@ -112,18 +146,19 @@ button:hover {
     margin-right: 0;
 }
 
-#clock {
-    background-color: #64727D;
-}
+/* #clock {
+    background-color: #64727d;
+} */
 
-#battery {
+/* #battery {
     background-color: #ffffff;
     color: #000000;
-}
+} */
 
-#battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
+#battery.charging,
+#battery.plugged {
+    color: @base05;
+    /* background-color: #26a65b; */
 }
 
 @keyframes blink {
@@ -144,30 +179,27 @@ button:hover {
     animation-direction: alternate;
 }
 
-#power-profiles-daemon {
+/* #power-profiles-daemon {
     padding-right: 15px;
-}
+} */
 
 #power-profiles-daemon.performance {
-    background-color: #f53c3c;
-    color: #ffffff;
+    color: @base08;
 }
 
 #power-profiles-daemon.balanced {
-    background-color: #2980b9;
-    color: #ffffff;
+    color: @base05;
 }
 
 #power-profiles-daemon.power-saver {
-    background-color: #2ecc71;
-    color: #000000;
+    color: @base0B;
 }
 
 label:focus {
     background-color: #000000;
 }
 
-#cpu {
+/* #cpu {
     background-color: #2ecc71;
     color: #000000;
 }
@@ -177,7 +209,7 @@ label:focus {
 }
 
 #disk {
-    background-color: #964B00;
+    background-color: #964b00;
 }
 
 #backlight {
@@ -190,28 +222,36 @@ label:focus {
 
 #network.disconnected {
     background-color: #f53c3c;
-}
+} */
 
-#pulseaudio {
+/* #pulseaudio {
     background-color: #f1c40f;
     color: #000000;
-}
+} */
 
-#pulseaudio.muted {
+/* #pulseaudio:hover {
+    background-color: #a37800;
+} */
+
+/* #pulseaudio.muted {
     background-color: #90b1b1;
     color: #2a5c45;
 }
 
-#wireplumber {
+#pulseaudio.source-muted {
+    color: blue;
+} */
+
+/* #wireplumber {
     background-color: #fff0f5;
     color: #000000;
 }
 
 #wireplumber.muted {
     background-color: #f53c3c;
-}
+} */
 
-#custom-media {
+/* #custom-media {
     background-color: #66cc99;
     color: #2a5c45;
     min-width: 100px;
@@ -223,19 +263,19 @@ label:focus {
 
 #custom-media.custom-vlc {
     background-color: #ffa000;
-}
+} */
 
-#temperature {
+/* #temperature {
     background-color: #f0932b;
 }
 
 #temperature.critical {
     background-color: #eb4d4b;
-}
+} */
 
-#tray {
+/* #tray {
     background-color: #2980b9;
-}
+} */
 
 #tray > .passive {
     -gtk-icon-effect: dim;
@@ -243,19 +283,19 @@ label:focus {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+    /* background-color: #eb4d4b; */
 }
 
-#idle_inhibitor {
+/* #idle_inhibitor {
     background-color: #2d3436;
-}
+} */
 
 #idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+    /* background-color: #ecf0f1; */
+    color: @base08;
 }
 
-#mpd {
+/* #mpd {
     background-color: #66cc99;
     color: #2a5c45;
 }
@@ -270,17 +310,14 @@ label:focus {
 
 #mpd.paused {
     background-color: #51a37a;
-}
+} */
 
 #language {
-    background: #00b093;
-    color: #740864;
-    padding: 0 5px;
-    margin: 0 5px;
+    padding: 0 5px 2px 5px;
     min-width: 16px;
 }
 
-#keyboard-state {
+/* #keyboard-state {
     background: #97e1ad;
     color: #000000;
     padding: 0 0px;
@@ -294,17 +331,9 @@ label:focus {
 
 #keyboard-state > label.locked {
     background: rgba(0, 0, 0, 0.2);
-}
+} */
 
-#scratchpad {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad.empty {
-	background-color: transparent;
-}
-
-#privacy {
+/* #privacy {
     padding: 0;
 }
 
@@ -323,4 +352,4 @@ label:focus {
 
 #privacy-item.audio-out {
     background-color: #0069d4;
-}
+} */

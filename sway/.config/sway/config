@@ -1,48 +1,41 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
+################################################################################
+# Variables
+################################################################################
 
-### Variables
-#
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
-# Recommends: foot
-set $term foot
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-# Recommends: rofi-wayland
-set $rofi_cmd rofi \
-        -terminal '$term'
-# Shows a combined list of the applications with desktop files and
-# executables from PATH.
-# TODO: add window with the next release of rofi-wayland
-set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
-### Output configuration
-#
+# Apps
+set $terminal alacritty
+set $fileManager thunar
+set $menu rofi -show drun
+set $menu_window rofi -show window
+
+################################################################################
+# Output configuration
+################################################################################
+
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
-output * bg /usr/share/backgrounds/default.jxl fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
+
+output * bg $HOME/Pictures/od_vaporwave.png fill
+
+output eDP-1 resolution 1920x1080 position 0,0
+output HDMI-A-1 resolution 1920x1080 position 1920,0
+
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-### Idle configuration
-#
+################################################################################
+# Idle configuration
+################################################################################
+
 # Example configuration:
-#
 # exec swayidle -w \
 #          timeout 300 'swaylock -f -c 000000' \
 #          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
@@ -52,10 +45,16 @@ output * bg /usr/share/backgrounds/default.jxl fill
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-### Input configuration
-#
+################################################################################
+# Input configuration
+################################################################################
+
+input "type:keyboard" {
+    xkb_layout us,pl
+    xkb_options grp:alt_shift_toggle
+}
+
 # Example configuration:
-#
 #   input "2:14:SynPS/2_Synaptics_TouchPad" {
 #       dwt enabled
 #       tap enabled
@@ -66,18 +65,24 @@ output * bg /usr/share/backgrounds/default.jxl fill
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-### Key bindings
+################################################################################
+# Key bindings
+################################################################################
+
 #
 # Basics:
 #
+
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Return exec  $terminal
+    bindsym Ctrl+Alt+t exec  $terminal
 
     # Kill focused window
     bindsym $mod+Shift+q kill
 
     # Start your launcher
     bindsym $mod+d exec $menu
+    bindsym $mod+Tab exec $menu_window
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -91,9 +96,18 @@ output * bg /usr/share/backgrounds/default.jxl fill
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+    # Exit mode (Test it)
+    bindsym Ctrl+Alt+Delete exec swaynag -m "Exit:" \
+        -B "Sleep" "systemctl suspend" \
+        -B "Poweroff" "systemctl poweroff" \
+        -B "Reboot" "systemctl reboot" \
+        -B "Logout" "swaymsg exit"
+
 #
 # Moving around:
 #
+
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
@@ -115,9 +129,11 @@ output * bg /usr/share/backgrounds/default.jxl fill
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+
 #
 # Workspaces:
 #
+
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
@@ -129,6 +145,7 @@ output * bg /usr/share/backgrounds/default.jxl fill
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
+
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
@@ -142,9 +159,11 @@ output * bg /usr/share/backgrounds/default.jxl fill
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
 #
 # Layout stuff:
 #
+
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
@@ -167,9 +186,11 @@ output * bg /usr/share/backgrounds/default.jxl fill
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+
 #
 # Scratchpad:
 #
+
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
 
@@ -179,9 +200,11 @@ output * bg /usr/share/backgrounds/default.jxl fill
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
 #
 # Resizing containers:
 #
+
 mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
@@ -203,6 +226,10 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+################################################################################
+# Include configs
+################################################################################
 
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
@@ -226,3 +253,69 @@ bindsym $mod+r mode "resize"
 # the trick, it's all in the `wordexp(3)`.
 #
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
+
+################################################################################
+# Colors & style
+################################################################################
+
+#
+# Opacity
+#
+
+# set $opacity 0.9
+# for_window [class=".*"] opacity $opacity
+# for_window [app_id=".*"] opacity $opacity
+
+#
+# Gaps & borders
+#
+
+hide_edge_borders smart
+gaps inner 5
+gaps outer 3
+default_border pixel 3
+
+#
+# Colors
+#
+
+# Base16 OneDark
+# https://github.com/tinted-theming/base16-i3/blob/main/themes/base16-onedark.config
+set $base00 #282c34
+set $base01 #353b45
+set $base02 #3e4451
+set $base03 #545862
+set $base04 #565c64
+set $base05 #abb2bf
+set $base06 #b6bdca
+set $base07 #c8ccd4
+set $base08 #e06c75
+set $base09 #d19a66
+set $base0A #e5c07b
+set $base0B #98c379
+set $base0C #56b6c2
+set $base0D #61afef
+set $base0E #c678dd
+set $base0F #be5046
+
+# Basic color configuration using the Base16 variables for windows and borders.
+# Property Name         Border  BG      Text    Indicator Child Border
+client.focused          $base05 $base0D $base00 $base0D $base0C
+client.focused_inactive $base01 $base01 $base05 $base03 $base01
+client.unfocused        $base01 $base00 $base05 $base01 $base01
+client.urgent           $base08 $base08 $base00 $base08 $base08
+client.placeholder      $base00 $base00 $base05 $base00 $base00
+client.background       $base07
+
+#
+# GTK 3 settings
+#
+
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    # gsettings set $gnome-schema gtk-theme 'Adwaita-dark'
+    gsettings set $gnome-schema gtk-theme 'OneDark'
+    gsettings set $gnome-schema icon-theme 'Tela-grey-dark'
+    # gsettings set $gnome-schema cursor-theme 'Your cursor Theme'
+    # gsettings set $gnome-schema font-name 'Your font name'
+}
