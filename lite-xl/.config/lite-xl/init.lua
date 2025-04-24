@@ -27,8 +27,8 @@ core.reload_module("colors.onedark")
 
 ------------------------------- Fonts ----------------------------------------
 
-style.font = renderer.font.load(USERDIR .. "/fonts/Ubuntu-R.ttf", 14 * SCALE)
-style.code_font = renderer.font.load(USERDIR .. "/fonts/Hack-Regular.ttf", 15 * SCALE)
+-- style.font = renderer.font.load(USERDIR .. "/fonts/Ubuntu-R.ttf", 14 * SCALE)
+-- style.code_font = renderer.font.load(USERDIR .. "/fonts/Hack-Regular.ttf", 15 * SCALE)
 
 -- customize fonts:
 -- style.font = renderer.font.load(DATADIR .. "/fonts/FiraSans-Regular.ttf", 14 * SCALE).
@@ -100,36 +100,74 @@ gitdiff_highlight gitstatus
 
 ------------------------- (formatter) Plugin -----------------------------------
 
-local formatter = require "plugins.formatter"
+-- local formatter = require "plugins.formatter"
 
-config.format_on_save = false
+-- config.format_on_save = false
+
+-- -- formatter.add_formatter {
+-- --     name = "Python formatter",
+-- --     file_patterns = {"%.pyi?$"},
+-- --     command = "black --line-length=80 $FILENAME && isort --profile=black --line-length=80 $FILENAME",
+-- -- }
 
 -- formatter.add_formatter {
 --     name = "Python formatter",
 --     file_patterns = {"%.pyi?$"},
---     command = "black --line-length=80 $FILENAME && isort --profile=black --line-length=80 $FILENAME",
+--     command = "ruff check --select I --fix $FILENAME && ruff format $FILENAME",
 -- }
 
-formatter.add_formatter {
-    name = "Python formatter",
-    file_patterns = {"%.pyi?$"},
-    command = "ruff check --select I --fix $FILENAME && ruff format $FILENAME",
+-- formatter.add_formatter {
+--     name = "JSON formatter",
+--     file_patterns = {"%.json$"},
+--     -- command = "tmpfile=$(mktemp) && jq . $FILENAME > $tmpfile && cat $tmpfile > $FILENAME && rm -f $tmpfile",
+--     command = "tmpfile=$(mktemp) && jq . t3.json > $tmpfile && mv -f $tmpfile t3.json"
+-- }
+
+-- config.shfmt_args = {"-i 4"}
+
+-- formatter.add_formatter {
+--     name = "shfmt",
+--     file_patterns = {"%.sh$"},
+--     command = "shfmt $ARGS -w $FILENAME",
+--     args = config.shfmt_args
+-- }
+
+
+------------------------------------- LSP --------------------------------------
+
+-- local lspconfig = require "plugins.lsp.config"
+-- lspconfig.clangd.setup()
+-- lspconfig.pyright.setup()
+
+local lsp = require "plugins.lsp"
+
+lsp.add_server {
+  name = "py-pyright",
+  language = "python",
+  file_patterns = { "%.py$" },
+  command = { "pyright-langserver", "--stdio" },
+  verbose = false
 }
 
-formatter.add_formatter {
-    name = "JSON formatter",
-    file_patterns = {"%.json$"},
-    -- command = "tmpfile=$(mktemp) && jq . $FILENAME > $tmpfile && cat $tmpfile > $FILENAME && rm -f $tmpfile",
-    command = "tmpfile=$(mktemp) && jq . t3.json > $tmpfile && mv -f $tmpfile t3.json"
+lsp.add_server {
+  name = "css-languageserver",
+  language = "css",
+  file_patterns = { "%.css$", "%.less$", "%.sass$" },
+  command = {'css-languageserver', '--stdio'},
+  fake_snippets = true,
+  verbose = false
 }
 
-config.shfmt_args = {"-i 4"}
-
-formatter.add_formatter {
-    name = "shfmt",
-    file_patterns = {"%.sh$"},
-    command = "shfmt $ARGS -w $FILENAME",
-    args = config.shfmt_args
+lsp.add_server {
+  name = "json-languageserver",
+  -- language = "json",
+  language = {
+    { id = "json", pattern = "%.json$" },
+    { id = "jsonc", pattern = "%.jsonc$" },
+  },
+  file_patterns = { "%.json$", "%.jsonc$" },
+  command = {'vscode-json-languageserver', '--stdio'},
+  verbose = false
 }
 
 
