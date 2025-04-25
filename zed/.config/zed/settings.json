@@ -7,13 +7,15 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+    "base_keymap": "VSCode",
     // "ui_font_family": "Ubuntu",
-    "icon_theme": "Zed (Default)",
-    "ui_font_size": 16,
+    "ui_font_family": "Hack Nerd Font",
+    "ui_font_size": 15.0,
     "buffer_font_family": "Hack Nerd Font",
     "buffer_font_size": 14.0,
     "buffer_font_weight": 100,
     "buffer_line_height": "comfortable",
+    "icon_theme": "Zed (Default)",
     "current_line_highlight": "gutter",
     "theme": {
         "mode": "dark",
@@ -52,7 +54,7 @@
     "extend_comment_on_newline": false,
     "show_wrap_guides": true,
     "wrap_guides": [80],
-    "soft_wrap": "none",
+    "soft_wrap": "editor_width",
     "show_whitespaces": "boundary",
     // "format_on_save": "language_server",
     // "formatter": "language_server",
@@ -118,17 +120,24 @@
     },
     "notification_panel": { "button": false },
     "lsp": {
-        "ruff": {
-            "initialization_options": {
-                "settings": {
-                    // Ruff server settings goes here
-                    "lineLength": 80,
-                    "lint": {
-                        "extendSelect": ["I"]
-                    }
+        "pyright": {
+            "settings": {
+                "python": {
+                    "pythonPath": ".venv/bin/python"
                 }
             }
         }
+        // "ruff": {
+        //     "initialization_options": {
+        //         "settings": {
+        //             // Ruff server settings goes here
+        //             "lineLength": 80,
+        //             "lint": {
+        //                 "extendSelect": ["I"]
+        //             }
+        //         }
+        //     }
+        // }
     },
     "languages": {
         "Markdown": { "tab_size": 4 },
@@ -141,24 +150,24 @@
             "format_on_save": "language_server"
         },
         "Python": {
-            "language_servers": ["ruff"],
+            // "language_servers": ["ruff"],
             // "language_servers": ["pyright", "ruff"],
             // "format_on_save": "language_server"
-            "format_on_save": "on",
+            "format_on_save": "on"
             // "formatter": "language_server",
-            "formatter": [
-                {
-                    "code_actions": {
-                        "source.organizeImports.ruff": true,
-                        "source.fixAll.ruff": true
-                    }
-                },
-                {
-                    "language_server": {
-                        "name": "ruff"
-                    }
-                }
-            ]
+            // "formatter": [
+            //     {
+            //         "code_actions": {
+            //             "source.organizeImports.ruff": true,
+            //             "source.fixAll.ruff": true
+            //         }
+            //     },
+            //     {
+            //         "language_server": {
+            //             "name": "ruff"
+            //         }
+            //     }
+            // ]
         }
     }
 }
