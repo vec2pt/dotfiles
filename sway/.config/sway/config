@@ -13,7 +13,7 @@ set $right l
 
 # Apps
 set $terminal alacritty
-set $fileManager thunar
+set $file_manager thunar
 set $menu rofi -show drun
 set $menu_window rofi -show window
 
@@ -81,8 +81,10 @@ input "type:keyboard" {
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    # bindsym $mod+d exec $menu
+    bindsym $mod+s exec $menu
     bindsym $mod+Tab exec $menu_window
+    bindsym $mod+e exec $file_manager
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -167,13 +169,13 @@ input "type:keyboard" {
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    # bindsym $mod+b splith
+    # bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    # bindsym $mod+s layout stacking
+    # bindsym $mod+w layout tabbed
+    # bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -262,15 +264,17 @@ include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "
 # Opacity
 #
 
-# set $opacity 0.9
+set $opacity 0.9
 # for_window [class=".*"] opacity $opacity
 # for_window [app_id=".*"] opacity $opacity
+for_window [app_id="Alacritty"] opacity $opacity
+for_window [app_id="foot"] opacity $opacity
 
 #
 # Gaps & borders
 #
 
-hide_edge_borders smart
+# hide_edge_borders smart
 gaps inner 5
 gaps outer 3
 default_border pixel 3
@@ -300,7 +304,7 @@ set $base0F #be5046
 
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border  BG      Text    Indicator Child Border
-client.focused          $base05 $base0D $base00 $base0D $base0C
+client.focused          $base05 $base0C $base00 $base0C $base0D
 client.focused_inactive $base01 $base01 $base05 $base03 $base01
 client.unfocused        $base01 $base00 $base05 $base01 $base01
 client.urgent           $base08 $base08 $base00 $base08 $base08
