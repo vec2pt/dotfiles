@@ -11,11 +11,14 @@ set $down j
 set $up k
 set $right l
 
+set $wallpaper ~/Pictures/od_vaporwave.png
+
 # Apps
 set $terminal alacritty
 set $file_manager thunar
 set $menu rofi -show drun
 set $menu_window rofi -show window
+set $lock swaylock
 
 ################################################################################
 # Output configuration
@@ -24,7 +27,7 @@ set $menu_window rofi -show window
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
 
-output * bg $HOME/Pictures/od_vaporwave.png fill
+output * bg $wallpaper fill
 
 output eDP-1 resolution 1920x1080 position 0,0
 output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -98,6 +101,8 @@ input "type:keyboard" {
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+    bindsym Mod1+l exec $lock
 
     # Exit mode (Test it)
     bindsym Ctrl+Alt+Delete exec swaynag -m "Exit:" \
