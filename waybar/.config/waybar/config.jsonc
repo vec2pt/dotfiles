@@ -34,7 +34,7 @@
     "sway/workspaces": {
         "disable-scroll": true,
         // "all-outputs": true,
-        "warp-on-scroll": false,
+        "warp-on-scroll": false
         // "format": "{name}: {icon}",
         // "format-icons": {
         //     "1": "",
@@ -56,8 +56,11 @@
         "tooltip-format": "{app}: {title}"
     },
     "wlr/taskbar": {
-        "on-click": "activate",
-        "on-click-middle": "close"
+        "all-outputs": true,
+        // "on-click": "activate",
+        "on-click": "minimize-raise",
+        "on-click-middle": "close",
+        "sort-by-app-id": true
     },
 
 
