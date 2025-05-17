@@ -4,7 +4,7 @@
     "display": {
         "key": { "type": "icon" },
         "separator": "    ",
-        "size": { "maxPrefix": "MB", "ndigits": 0 },
+        "size": { "maxPrefix": "MB", "ndigits": 0 }
     },
     "modules": [
         // "title",
@@ -27,6 +27,6 @@
         "gpu",
         "memory",
         "break",
-        "colors",
-    ],
+        "colors"
+    ]
 }
