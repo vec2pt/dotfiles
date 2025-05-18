@@ -7,9 +7,9 @@
     br = branch
     ci = commit
     aa = add --all
-
-    lg = log --graph --pretty=format:'%C(auto)%h -%d %s, %C(black)%cd%C(reset), %C(bold green)%an%C(reset)' --decorate --date=format:'%Y-%M-%d %H:%M%S' --abbrev-commit
-
+    graph = log --graph --pretty=format:'%C(auto)%h -%d %s, %C(blue)%cd%C(reset), %C(bold green)%an%C(reset)' --decorate --date=format:'%Y-%M-%d %H:%M:%S' --abbrev-commit
+    web = instaweb -l --httpd=webrick
+    webs = instaweb -l --httpd=webrick --stop
 [color]
     ui = auto
     diff = auto
@@ -17,29 +17,19 @@
     branch = auto
     interactive = auto
     pager = true
-[core]
-    pager = less -FX
-    editor = code --wait
 [credential]
     helper = store
-    # helper = cache --timeout=3600
-# [diff]
-#    renames = copies
 [help]
     autocorrect = prompt
 # [push]
 #     default = simple
-# [branch "master"]
-#     mergeoptions = --no-edit
 [pull]
     rebase = false
 [init]
     defaultBranch = main
-# [filter "spacify"]
-#     clean = expand --tabs=4 --initial
 [credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+    helper =
+    helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+    helper =
+    helper = !/usr/bin/gh auth git-credential

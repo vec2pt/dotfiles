@@ -1,6 +1,40 @@
-export ZDOTDIR="$HOME/.config/zsh"
+################################################################################
+# Environment variables
+################################################################################
 
-# Configuring $PATH (or https://wiki.archlinux.org/title/Zsh#Configuring_$PATH)
+# XDG
+[ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME="$HOME/.config"
+[ -z "$XDG_DATA_HOME" ] && export XDG_DATA_HOME="$HOME/.local/share"
+[ -z "$XDG_CACHE_HOME" ] && export XDG_CACHE_HOME="$HOME/.cache"
+[ -z "$XDG_STATE_HOME" ] && export XDG_STATE_HOME="$HOME/.local/state"
+
+# Default programs
+# export TERM="alacritty"
+export PAGER="less -RF"
+# export PAGER='nvim +Man!'
+# [ -n "$DISPLAY" ] && export EDITOR="codium" || export EDITOR="nvim"
+# export VISUAL="nvim"
+# [ -n "$DISPLAY" ] && export BROWSER="librewolf"
+
+# zsh
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export HISTFILE="$XDG_CACHE_HOME/.zsh_history"
+export HISTSIZE=1000
+export SAVEHIST=1000
+
+################################################################################
+# Configuring $PATH
+################################################################################
+
+# https://wiki.archlinux.org/title/Zsh#Configuring_$PATH
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+
+################################################################################
+# Programs
+################################################################################
+
+# Config `bat`
+export BAT_THEME="OneHalfDark"
+export BAT_STYLE="numbers,changes"

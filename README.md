@@ -23,7 +23,4 @@ stow -t $HOME sway swaylock dunst rofi
 ## TODO
 
 - Add vimrc
-- Test [micro](https://github.com/zyedidia/micro) dotfiles.
-- Add colors aliases:
-  - https://nick3499.medium.com/bash-echo-text-color-background-color-e8d8c41d5a91
-  - https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
+- Test [micro](https://github.com/zyedidia/micro) editor.
