@@ -8,8 +8,35 @@
 # Funcions
 ################################################################################
 
-command_exists() {
+function command_exists() {
     command -v "$1" >/dev/null 2>&1
+}
+
+# Usage: print_colored red "To be, or not to be"
+function print_colored() {
+    case $1 in
+        "black"        ) local color='\e[30m' ;;
+        "red"          ) local color='\e[31m' ;;
+        "green"        ) local color='\e[32m' ;;
+        "yellow"       ) local color='\e[33m' ;;
+        "blue"         ) local color='\e[34m' ;;
+        "purple"       ) local color='\e[35m' ;;
+        "cyan"         ) local color='\e[36m' ;;
+        "white"        ) local color='\e[37m' ;;
+        "bg_black"     ) local color='\e[40m' ;;
+        "bg_red"       ) local color='\e[41m' ;;
+        "bg_green"     ) local color='\e[42m' ;;
+        "bg_yellow"    ) local color='\e[43m' ;;
+        "bg_blue"      ) local color='\e[44m' ;;
+        "bg_purple"    ) local color='\e[45m' ;;
+        "bg_cyan"      ) local color='\e[46m' ;;
+        "bg_white"     ) local color='\e[47m' ;;
+        *) echo "No valid color."; exit 1 ;;
+    esac
+    local reset='\e[0m'
+    local str=$2
+    echo -e "${color}${str}${reset}"
+    # printf "${color}%s${reset}\n" "$str"
 }
 
 # Source: https://ostechnix.com/a-bash-function-to-extract-file-archives-of-various-types/
@@ -26,29 +53,12 @@ function extract() {
             *.tgz)       tar xzf $1     ;;
             *.zip)       unzip $1       ;;
             *.Z)         uncompress $1  ;;
-            *.7z)        7z x $1    ;;
+            *.7z)        7z x $1        ;;
             *)           echo "'$1' cannot be extracted via extract()" ;;
         esac
     else
         echo "'$1' is not a valid file"
     fi
-}
-
-# Source: http://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
-function colortest() {
-    T='gYw'
-    echo -e "\n                 40m     41m     42m     43m     44m     45m     46m     47m";
-    for FGs in '    m' '   1m' '  30m' '1;30m' '  31m' '1;31m' '  32m' \
-            '1;32m' '  33m' '1;33m' '  34m' '1;34m' '  35m' '1;35m' \
-            '  36m' '1;36m' '  37m' '1;37m';
-    do FG=${FGs// /}
-        echo -en " $FGs \033[$FG  $T  "
-        for BG in 40m 41m 42m 43m 44m 45m 46m 47m;
-            do echo -en "$EINS \033[$FG\033[$BG  $T  \033[0m";
-        done
-        echo;
-    done
-    echo
 }
 
 function reload() {
