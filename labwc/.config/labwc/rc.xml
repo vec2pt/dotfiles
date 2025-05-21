@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+
+<labwc_config>
+
+  <theme>
+    <name>Triste-Crimson</name>
+    <titlebar>
+      <!-- <layout>icon:iconify,max,close</layout> -->
+      <layout>:iconify,max,close</layout>
+      <showTitle>yes</showTitle>
+    </titlebar>
+    <cornerRadius>0</cornerRadius>
+    <font name="sans" size="10" />
+  </theme>
+
+  <windowSwitcher show="yes" preview="yes" outlines="yes" allWorkspaces="yes">
+    <fields>
+      <field content="icon" width="5%" />
+      <field content="desktop_entry_name" width="30%" />
+      <field content="title" width="65%" />
+      <!--
+        Just as for window-rules, you can use 'identifier' or
+        'trimmed_identifier' to show the app_id for native wayland clients or
+        WM_CLASS for XWayland clients.
+
+        <field content="trimmed_identifier" width="65%" />
+      -->
+    </fields>
+  </windowSwitcher>
+
+
+  <resize>
+    <!-- Show a simple resize and move indicator -->
+    <popupShow>Never</popupShow>
+    <!-- Let client redraw its contents while resizing -->
+    <drawContents>yes</drawContents>
+    <!-- Borders are effectively 8 pixels wide regardless of visual appearance -->
+    <minimumArea>15</minimumArea>
+
+    <!--
+      Set cornerRange to a positive value to increase the size of corner
+      regions for mouse actions and diagonal window resizing. When omitted,
+      the default size of the corner region is half of the titlebar height.
+
+      <cornerRange>8</cornerRange>
+    -->
+  </resize>
+
+  <desktops number="8">
+    <popupTime>1000</popupTime>
+    <names>
+      <name>1</name>
+      <name>2</name>
+      <name>3</name>
+      <name>4</name>
+      <name>5</name>
+      <name>6</name>
+      <name>7</name>
+      <name>8</name>
+    </names>
+  </desktops>
+
+
+  <keyboard>
+    <default />
+    <!-- Apps -->
+    <keybind key="W-Return">
+      <action name="Execute" command="alacritty" />
+    </keybind>
+
+    <!-- desktops -->
+    <keybind key="W-1">
+      <action name="GoToDesktop" to="1" />
+    </keybind>
+    <keybind key="W-2">
+      <action name="GoToDesktop" to="2" />
+    </keybind>
+    <keybind key="W-3">
+      <action name="GoToDesktop" to="3" />
+    </keybind>
+    <keybind key="W-4">
+      <action name="GoToDesktop" to="4" />
+    </keybind>
+    <keybind key="W-5">
+      <action name="GoToDesktop" to="5" />
+    </keybind>
+    <keybind key="W-6">
+      <action name="GoToDesktop" to="6" />
+    </keybind>
+    <keybind key="W-7">
+      <action name="GoToDesktop" to="7" />
+    </keybind>
+    <keybind key="W-8">
+      <action name="GoToDesktop" to="8" />
+    </keybind>
+
+
+
+    <!-- Keybind -->
+    <keybind key="W-s">
+      <action name="Execute" command="rofi -show drun" />
+    </keybind>
+    <keybind key="C-A-Delete">
+      <action name="Exit">
+        <prompt>yes</prompt>
+      </action>
+    </keybind>
+
+  </keyboard>
+
+  <mouse>
+    <default />
+    <!-- Show a custom menu on desktop right click -->
+    <context name="Root">
+      <mousebind button="Right" action="Press">
+        <action name="ShowMenu" menu="some-custom-menu" />
+      </mousebind>
+    </context>
+  </mouse>
+
+</labwc_config>
