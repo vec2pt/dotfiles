@@ -18,9 +18,6 @@ export PAGER="less -RF"
 
 # zsh
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export HISTFILE="$XDG_CACHE_HOME/.zsh_history"
-export HISTSIZE=1000
-export SAVEHIST=1000
 
 ################################################################################
 # Configuring $PATH

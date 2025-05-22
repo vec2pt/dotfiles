@@ -51,6 +51,9 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 # History
 ################################################################################
 
+export HISTFILE="$XDG_CACHE_HOME/.zsh_history"
+export HISTSIZE=1000
+export SAVEHIST=1000
 setopt HIST_EXPIRE_DUPS_FIRST # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt HIST_IGNORE_DUPS       # ignore duplicated commands history list
 setopt HIST_IGNORE_ALL_DUPS   # delete an old recorded event if a new event is a duplicate
