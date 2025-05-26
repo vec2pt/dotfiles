@@ -1,12 +1,21 @@
 <?xml version="1.0" ?>
 
 <labwc_config>
+  <placement policy="automatic" />
+
+  <applications>
+    <application type="normal">
+      <maximized>true</maximized>
+      <decor>no</decor>
+    </application>
+  </applications>
 
   <theme>
-    <name>Triste-Crimson</name>
+    <name>Lubuntu Arc-Round Dark</name>
     <titlebar>
       <!-- <layout>icon:iconify,max,close</layout> -->
       <layout>:iconify,max,close</layout>
+      <!-- <layout>title:</layout> -->
       <showTitle>yes</showTitle>
     </titlebar>
     <cornerRadius>0</cornerRadius>
@@ -47,7 +56,7 @@
   </resize>
 
   <desktops number="8">
-    <popupTime>1000</popupTime>
+    <popupTime>200</popupTime>
     <names>
       <name>1</name>
       <name>2</name>
@@ -63,12 +72,25 @@
 
   <keyboard>
     <default />
+
     <!-- Apps -->
     <keybind key="W-Return">
       <action name="Execute" command="alacritty" />
     </keybind>
+    <keybind key="W-s">
+      <action name="Execute" command="rofi -show drun" />
+    </keybind>
+    <keybind key="W-r">
+      <action name="Execute" command="rofi -show run" />
+    </keybind>
+    <keybind key="W-e">
+      <action name="Execute" command="thunar" />
+    </keybind>
+    <keybind key="W-b">
+      <action name="Execute" command="xdg-open 'https://duckduckgo.com/'" />
+    </keybind>
 
-    <!-- desktops -->
+    <!-- Desktops -->
     <keybind key="W-1">
       <action name="GoToDesktop" to="1" />
     </keybind>
@@ -94,27 +116,88 @@
       <action name="GoToDesktop" to="8" />
     </keybind>
 
-
-
-    <!-- Keybind -->
-    <keybind key="W-s">
-      <action name="Execute" command="rofi -show drun" />
+    <keybind key="W-S-1">
+      <action name="SendToDesktop" to="1" />
     </keybind>
+    <keybind key="W-S-2">
+      <action name="SendToDesktop" to="2" />
+    </keybind>
+    <keybind key="W-S-3">
+      <action name="SendToDesktop" to="3" />
+    </keybind>
+    <keybind key="W-S-4">
+      <action name="SendToDesktop" to="4" />
+    </keybind>
+    <keybind key="W-S-5">
+      <action name="SendToDesktop" to="5" />
+    </keybind>
+    <keybind key="W-S-6">
+      <action name="SendToDesktop" to="6" />
+    </keybind>
+    <keybind key="W-S-7">
+      <action name="SendToDesktop" to="7" />
+    </keybind>
+    <keybind key="W-S-8">
+      <action name="SendToDesktop" to="8" />
+    </keybind>
+
+    <keybind key="W-Tab">
+      <action name="GoToDesktop" to="right" />
+    </keybind>
+
+    <keybind key="W-S-Tab">
+      <action name="GoToDesktop" to="left" />
+    </keybind>
+
+
+    <!-- Keybinds -->
+
+    <!-- Disable left click menu -->
+    <keybind key="A-Left" />
+    <keybind key="A-Right" />
+    <keybind key="A-Up" />
+    <keybind key="A-Down" />
+
+    <keybind key="W-f">
+      <action name="ToggleMaximize" />
+      <!-- <action name="ToggleFullscreen" /> -->
+    </keybind>
+
+    <!-- <keybind key="W-j">
+      <action name="Iconify" />
+    </keybind> -->
+
+    <keybind key="W-q">
+      <action name="Close" />
+    </keybind>
+
+    <keybind key="W-S-c">
+      <action name="Reconfigure" />
+    </keybind>
+
     <keybind key="C-A-Delete">
-      <action name="Exit">
-        <prompt>yes</prompt>
-      </action>
+      <action name="Exit" />
     </keybind>
 
   </keyboard>
 
+  <!-- <windowRules>
+    <windowRule identifier="*" type="normal">
+      <action name="Maximize" />
+    </windowRule>
+    <windowRule identifier="alacritty" serverDecoration="no" />
+  </windowRules> -->
+
   <mouse>
     <default />
-    <!-- Show a custom menu on desktop right click -->
+    <!-- Show a menu on desktop right click -->
     <context name="Root">
       <mousebind button="Right" action="Press">
-        <action name="ShowMenu" menu="some-custom-menu" />
+        <action name="ShowMenu" menu="root-menu" />
       </mousebind>
+
+      <!-- Disable left click menu -->
+      <mousebind button="Left" action="Press" />
     </context>
   </mouse>
 

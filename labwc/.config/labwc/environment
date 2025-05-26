@@ -22,6 +22,9 @@
 # XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle
 # XKB_DEFAULT_OPTIONS=grp:shift_caps_toggle
 
+XKB_DEFAULT_LAYOUT=us,pl
+XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle
+
 ##
 ## Set cursor theme and size. Find system icons themes with:
 ## `find /usr/share/icons/ -type d -name "cursors"`
