@@ -1,0 +1,58 @@
+" https://github.com/nickjj/dotfiles/blob/master/.vimrc
+" https://www.freecodecamp.org/news/vimrc-configuration-guide-customize-your-vim-editor/`
+" TODO: https://github.com/hendrikmi/dotfiles/blob/main/vim/.vimrc
+
+
+" Controls
+set clipboard=unnamedplus " Accessing the system clipboard
+
+
+
+
+
+
+set showcmd		" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+"set ignorecase		" Do case insensitive matching
+set smartcase		" Do smart case matching
+"set autowrite		" Automatically save before commands like :next and :make
+"set hidden		" Hide buffers when they are abandoned
+
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set softtabstop=4
+set laststatus=2
+set wildmenu
+" set wildmode=list:longest
+set wildmode=longest:full,full
+" set wrap
+" set tabstop=2 shiftwidth=2 expandtab
+set splitbelow
+" set showtabline=2
+
+
+" https://stackoverflow.com/questions/1050640/how-to-stop-vim-from-adding-a-newline-at-end-of-file
+set nofixeol
+set nofixendofline
+
+" https://stackoverflow.com/questions/6821033/vim-how-to-run-a-command-immediately-when-starting-vim
+" autocmd VimEnter * FindFileCache .
+
+
+" Rendering.
+set ttyfast
+
+set ruler
+
+set title
+hi LineNr term=bold cterm=NONE ctermfg=grey ctermbg=NONE gui=NONE guifg=lightgrey guibg=NONE
+hi CursorLineNr term=bold cterm=bold ctermfg=white ctermbg=NONE gui=NONE guibg=NONE
+
+" set colorcolumn=80
+" hi ColorColumn ctermbg=0 guibg=lightgrey
+
+" set cursorline
+" hi CursorLine cterm=NONE ctermbg=0 guibg=grey
+" set cursorlineopt=number
