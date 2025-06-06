@@ -87,7 +87,7 @@ promptinit
 PS1=$'%B%F{blue}%~%f\n%F{green}%%%f%b '
 
 # Starship prompt
-if [ -x "$(command -v starship)" ]; then
+if test "$TERM" != "linux" && [ -x "$(command -v starship)" ]; then
     eval "$(starship init zsh)"
 fi
 
