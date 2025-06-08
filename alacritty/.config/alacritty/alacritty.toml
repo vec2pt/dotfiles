@@ -16,7 +16,14 @@ offset = { x = 0, y = 1 }
 style = { shape = "Beam", blinking = "On" }
 thickness = 0.2
 
+[keyboard]
+bindings = [
+    { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
+    { key = "n", mods = "Control|Shift", action = "SpawnNewInstance" },
+    { key = "Backspace", mods = "Control", chars = "\u0017" },
+]
+
 [mouse]
 bindings = [
-{ mouse = "Right", action = "Copy" },
+    { mouse = "Right", action = "Copy" },
 ]
