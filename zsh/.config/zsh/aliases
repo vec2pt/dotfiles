@@ -131,6 +131,8 @@ alias c='clear'
 alias h='history'
 alias j='jobs -l'
 alias q='exit'
+alias e='nvim'
+alias vi='nvim'
 
 # systemctl
 alias poweroff='systemctl poweroff'
@@ -190,7 +192,8 @@ alias servepy='xdg-open http://0.0.0.0:8000/ && python -m http.server'
 
 alias g="git"
 alias gco="git checkout"
-alias gst="git status -sb"
+alias gst="git status"
+alias gdiff="git difftool --tool=nvimdiff"
 alias gbr="git branch"
 alias gci="git commit"
 alias gaa="git add --all"
@@ -198,3 +201,11 @@ alias glg="git log --graph --pretty=format:'%C(auto)%h -%d %s, %C(blue)%cd%C(res
 
 alias gitweb="git instaweb -l --httpd=webrick"
 alias gitwebs="git instaweb -l --httpd=webrick --stop"
+
+function lazygit() {
+    git status .
+    git add .
+    git commit -m "$@"
+    git push origin HEAD
+}
+

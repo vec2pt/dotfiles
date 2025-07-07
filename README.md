@@ -16,7 +16,7 @@ stow -t $HOME zsh git starship fastfetch
 Command to install dotfiles for Swaywm:
 
 ```bash
-stow -t $HOME sway swaylock dunst rofi
+stow -t $HOME sway swaylock waybar dunst rofi
 ```
 
 

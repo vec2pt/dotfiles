@@ -11,7 +11,7 @@
 # Default programs
 # export TERM="alacritty"
 export PAGER="less -RF"
-# export PAGER='nvim +Man!'
+export MANPAGER="nvim +Man!"
 # [ -n "$DISPLAY" ] && export EDITOR="codium" || export EDITOR="nvim"
 # export VISUAL="nvim"
 # [ -n "$DISPLAY" ] && export BROWSER="librewolf"
@@ -35,3 +35,13 @@ fi
 # Config `bat`
 export BAT_THEME="OneHalfDark"
 export BAT_STYLE="numbers,changes"
+
+################################################################################
+# Window manager
+################################################################################
+
+# https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login
+# if [ -z "$WAYLAND_DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ] ; then
+#     exec sway
+# fi
+

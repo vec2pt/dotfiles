@@ -53,8 +53,12 @@ exec swayidle -w \
 ################################################################################
 
 input "type:keyboard" {
-    xkb_layout us,pl
-    xkb_options grp:alt_shift_toggle
+    xkb_layout us(altgr-intl),pl
+    xkb_options grp:lalt_lshift_toggle,caps:escape_shifted_capslock
+    # Default: repeat_delay 600
+    # repeat_delay 300
+    # Default repeat_rate: 25
+    # repeat_rate 35
 }
 
 ################################################################################
@@ -332,6 +336,24 @@ bar {
     swaybar_command waybar
 }
 
+# bar {
+#     position top
+#     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+
+#     colors {
+#         background #21252B
+#         separator  $base01
+#         statusline $base05
+
+#         # State             Border  BG      Text
+#         focused_workspace   $base05 $base0D $base00
+#         active_workspace    $base05 $base03 $base00
+#         inactive_workspace  $base01 $base00 $base05
+#         urgent_workspace    $base08 $base08 $base00
+#         binding_mode        $base00 $base0A $base00
+#     }
+# }
+
 ################################################################################
 # Apps
 ################################################################################
@@ -377,10 +399,11 @@ assign [app_id="librewolf"] → 1
 ################################################################################
 
 exec nm-applet --indicator
-exec firewall-applet
 exec blueman-applet
-exec wl-paste --watch cliphist store
-exec wl-clip-persist --clipboard regular
+# exec firewall-applet
+
+# exec wl-paste --watch cliphist store
+exec wl-clip-persist --clipboard regular --reconnect-tries 0
 exec thunar --daemon
 exec aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -400,3 +423,4 @@ exec librewolf
 ################################################################################
 
 include /etc/sway/config.d/*
+

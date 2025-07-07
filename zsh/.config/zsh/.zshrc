@@ -16,7 +16,7 @@
 ################################################################################
 
 setopt AUTO_CD              # change directory just by typing its name
-# setopt GLOB_DOTS            # Do not require a leading ‘.’ in a filename to be matched explicitly.
+setopt GLOB_DOTS            # Do not require a leading ‘.’ in a filename to be matched explicitly.
 setopt INTERACTIVE_COMMENTS # allow comments in interactive mode
 
 
@@ -103,7 +103,7 @@ precmd () {print -Pn "\e]0;%~\a"}
 ################################################################################
 
 # Source https://github.com/nordtheme/dircolors/tree/develop
-test -r $ZDOTDIR/.dir_colors && eval $(dircolors $ZDOTDIR/.dir_colors)
+test -r $ZDOTDIR/dir_colors && eval $(dircolors $ZDOTDIR/dir_colors)
 
 # fix ls color for folders with 777 permissions
 export LS_COLORS=$LS_COLORS':tw=36;01'
@@ -129,12 +129,9 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 # Imports
 ################################################################################
 
-# Bash utils definitions.
-# [ -s "$HOME/.local/bin/bash-utils" ] && \. "$HOME/.local/bin/bash-utils"
-
 # Alias definitions.
-if [ -f $ZDOTDIR/.aliases ]; then
-    . $ZDOTDIR/.aliases
+if [ -f $ZDOTDIR/aliases ]; then
+    . $ZDOTDIR/aliases
 fi
 
 ################################################################################
@@ -168,3 +165,7 @@ fi
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+

@@ -4,7 +4,8 @@
     "display": {
         "key": { "type": "icon" },
         "separator": "    ",
-        "size": { "maxPrefix": "MB", "ndigits": 0 }
+        "size": { "maxPrefix": "MB", "ndigits": 0 },
+        "percent": {"ndigits": 2}
     },
     "modules": [
         // "title",
@@ -30,3 +31,4 @@
         "colors"
     ]
 }
+
