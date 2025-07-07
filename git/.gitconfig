@@ -35,4 +35,5 @@
     helper = !/usr/bin/gh auth git-credential
 [core]
 	editor = nvim
+	pager = nvim -R
 

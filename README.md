@@ -23,4 +23,6 @@ stow -t $HOME sway swaylock waybar dunst rofi
 ## TODO
 
 - Add vimrc
+- Try [delta](https://github.com/dandavison/delta).
 - Test [micro](https://github.com/zyedidia/micro) editor.
+
