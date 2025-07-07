@@ -1,120 +1,156 @@
--- Source: https://lsp-zero.netlify.app/docs/guide/lazy-loading-with-lazy-nvim.html
--- LSP Info: https://www.andersevenrud.net/neovim.github.io/lsp/configurations/
-
 return {
-
-    -- Autocompletion
     {
-        'hrsh7th/nvim-cmp',
-        dependencies = { 'hrsh7th/cmp-nvim-lsp-signature-help', "hrsh7th/cmp-buffer", "hrsh7th/cmp-path" },
-        event = 'InsertEnter',
-        config = function()
-            local cmp = require('cmp')
-
-            cmp.setup({
-                sources = { { name = 'nvim_lsp' }, { name = 'nvim_lsp_signature_help' }, { name = 'buffer' }, { name = 'path' } },
-                mapping = cmp.mapping.preset.insert({
-                    -- ['<C-Space>'] = cmp.mapping.complete(),
-                    -- ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-                    -- ['<C-d>'] = cmp.mapping.scroll_docs(4),
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                    ["<Tab>"] = cmp.mapping.select_next_item(),
-                    ["<S-Tab>"] = cmp.mapping.select_prev_item()
-                }),
-                snippet = { expand = function(args) vim.snippet.expand(args.body) end }
-            })
-        end
+        'saghen/blink.cmp',
+        dependencies = { 'rafamadriz/friendly-snippets' },
+        version = '1.*',
+        build = 'cargo build --release',
+        opts = {
+            keymap = { preset = 'default' },
+            -- keymap = { preset = 'super-tab' },
+            completion = { documentation = { auto_show = true } },
+            signature = { enabled = true },
+            cmdline = {
+                keymap = { preset = 'inherit' },
+                completion = { menu = { auto_show = true } },
+            },
+        },
+        opts_extend = { "sources.default" }
     },
-
-    -- LSP
     {
-        'neovim/nvim-lspconfig',
-        cmd = 'LspInfo',
-        event = { 'BufReadPre', 'BufNewFile' },
-        dependencies = { { 'hrsh7th/cmp-nvim-lsp' } },
-        init = function()
-            -- Reserve a space in the gutter
-            -- This will avoid an annoying layout shift in the screen
-            vim.opt.signcolumn = 'yes'
-        end,
-        config = function()
-            local lsp_defaults = require('lspconfig').util.default_config
 
-            -- Add cmp_nvim_lsp capabilities settings to lspconfig
-            -- This should be executed before you configure any language server
-            lsp_defaults.capabilities = vim.tbl_deep_extend('force', lsp_defaults.capabilities,
-                require('cmp_nvim_lsp').default_capabilities())
-
-            -- LspAttach is where you enable features that only work
-            -- if there is a language server active in the file
-            vim.api.nvim_create_autocmd('LspAttach', {
-                desc = 'LSP actions',
-                callback = function(event)
-                    local opts = { buffer = event.buf }
-
-                    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-                    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-                    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-                    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-                    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-                    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-                    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-                    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-                    vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-                    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-                end
-            })
-
-            -- These are just examples. Replace them with the language
-            -- servers you have installed in your system
-
-            -- Python
-            -- require('lspconfig').ruff.setup({})
-            require('lspconfig').pyright.setup({})
-
-            -- Lua
-            -- require('lspconfig').lua_ls.setup({})
-            -- https://github.com/neovim/neovim/issues/21686#issuecomment-1522446128
-            require('lspconfig').lua_ls.setup {
-                settings = {
-                    Lua = {
-                        runtime = {
-                            -- Tell the language server which version of Lua you're using
-                            -- (most likely LuaJIT in the case of Neovim)
-                            version = 'LuaJIT',
-                        },
-                        diagnostics = {
-                            -- Get the language server to recognize the `vim` global
-                            globals = {
-                                'vim',
-                                'require'
-                            },
-                        },
-                        workspace = {
-                            -- Make the server aware of Neovim runtime files
-                            library = vim.api.nvim_get_runtime_file("", true),
-                        },
-                        -- Do not send telemetry data containing a randomized but unique identifier
-                        telemetry = {
-                            enable = false,
-                        },
+        "neovim/nvim-lspconfig",
+        dependencies = { 'saghen/blink.cmp',
+            {
+                "folke/lazydev.nvim",
+                opts = {
+                    library = {
+                        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
                     },
                 },
-            }
+            }, },
+        config = function()
+            vim.lsp.enable('lua_ls') -- Lua
+            -- vim.lsp.config('lua_ls', {
+            --     settings = {
+            --         Lua = {
+            --             runtime = {
+            --                 version = 'LuaJIT', },
+            --             diagnostics = { globals = { 'vim', 'require' },
+            --             },
+            --             workspace = { library = vim.api.nvim_get_runtime_file("", true), },
+            --             telemetry = { enable = false, },
+            --         },
+            --     },
+            -- })
+            vim.lsp.enable({ 'pyright', 'ruff' })         -- Python
+            vim.lsp.enable('bashls')                      -- Bash
+            vim.lsp.enable({ 'html', 'cssls', 'jsonls' }) -- HTML / CSS / Json
+            vim.lsp.config('jsonls', {
+                init_options = { provideFormatter = false }
+            })
+            vim.lsp.enable("rust_analyzer") -- Rust
+            vim.lsp.enable("clangd")        -- C / C++
+            vim.lsp.enable("yamlls")        -- YAML
 
-            -- HTML/CSS/JSON/ESLint
-            require('lspconfig').html.setup {}
-            require('lspconfig').cssls.setup {}
-            require('lspconfig').jsonls.setup {}
+            -- :h lsp-format
+            vim.api.nvim_create_autocmd('LspAttach', {
+                group = vim.api.nvim_create_augroup('lsp-augroup', {}),
+                callback = function(args)
+                    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
-            -- Rust
-            require('lspconfig').rust_analyzer.setup {}
+                    vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { buffer = args.buf, desc = 'LSP: [R]e[n]ame' })
+                    vim.keymap.set({ 'n', 'x' }, 'gra', vim.lsp.buf.code_action,
+                        { buffer = args.buf, desc = 'LSP: [G]oto Code [A]ction' })
+                    vim.keymap.set('n', 'grr', require('telescope.builtin').lsp_references,
+                        { buffer = args.buf, desc = 'LSP: [G]oto [R]eferences' })
+                    vim.keymap.set('n', 'gri', require('telescope.builtin').lsp_implementations,
+                        { buffer = args.buf, desc = 'LSP: [G]oto [I]mplementation' })
+                    vim.keymap.set('n', 'grd', require('telescope.builtin').lsp_definitions,
+                        { buffer = args.buf, desc = 'LSP: [G]oto [D]efinition' })
+                    vim.keymap.set('n', 'grD', vim.lsp.buf.declaration,
+                        { buffer = args.buf, desc = 'LSP: [G]oto [D]eclaration' })
+                    vim.keymap.set('n', 'gO', require('telescope.builtin').lsp_document_symbols,
+                        { buffer = args.buf, desc = 'LSP: Open Document Symbols' })
+                    vim.keymap.set('n', 'gW', require('telescope.builtin').lsp_dynamic_workspace_symbols,
+                        { buffer = args.buf, desc = 'LSP: Open Workspace Symbols' })
+                    vim.keymap.set('n', 'grt', require('telescope.builtin').lsp_type_definitions,
+                        { buffer = args.buf, desc = 'LSP: [G]oto [T]ype Definition' })
 
-            -- C/C++
-            require('lspconfig').clangd.setup {}
+                    -- Enable auto-completion
+                    -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+                    -- if client:supports_method('textDocument/completion') then
+                    --     local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+                    --     client.server_capabilities.completionProvider.triggerCharacters = chars
+                    --     vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+                    -- end
 
-            -- YAML
-            require 'lspconfig'.yamlls.setup {}
-        end
+                    -- Auto-format ("lint") on save.
+                    if not client:supports_method('textDocument/willSaveWaitUntil')
+                        and client:supports_method('textDocument/formatting') then
+                        vim.api.nvim_create_autocmd('BufWritePre', {
+                            group = vim.api.nvim_create_augroup('lsp-augroup', { clear = false }),
+                            buffer = args.buf,
+                            callback = function()
+                                vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
+                            end,
+                        })
+                    end
+
+                    -- Enable highlight `:help CursorHold`
+                    if client:supports_method('textDocument/documentHighlight') then
+                        local highlight_augroup = vim.api.nvim_create_augroup('lsp-augroup-highlight',
+                            { clear = false })
+                        vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                            buffer = args.buf,
+                            group = highlight_augroup,
+                            callback = vim.lsp.buf.document_highlight,
+                        })
+
+                        vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+                            buffer = args.buf,
+                            group = highlight_augroup,
+                            callback = vim.lsp.buf.clear_references,
+                        })
+
+                        vim.api.nvim_create_autocmd('LspDetach', {
+                            group = vim.api.nvim_create_augroup('lsp-augroup-detach', { clear = true }),
+                            callback = function(args2)
+                                vim.lsp.buf.clear_references()
+                                vim.api.nvim_clear_autocmds { group = 'lsp-augroup-highlight', buffer = args2.buf }
+                            end,
+                        })
+                    end
+
+                    -- Diagnostic Config
+                    -- See :help vim.diagnostic.Opts
+                    vim.diagnostic.config {
+                        severity_sort = true,
+                        float = { border = 'rounded', source = 'if_many' },
+                        underline = { severity = vim.diagnostic.severity.ERROR },
+                        signs = vim.g.have_nerd_font and {
+                            text = {
+                                [vim.diagnostic.severity.ERROR] = '󰅚 ',
+                                [vim.diagnostic.severity.WARN] = '󰀪 ',
+                                [vim.diagnostic.severity.INFO] = '󰋽 ',
+                                [vim.diagnostic.severity.HINT] = '󰌶 ',
+                            },
+                        } or {},
+                        virtual_text = {
+                            source = 'if_many',
+                            spacing = 2,
+                            format = function(diagnostic)
+                                local diagnostic_message = {
+                                    [vim.diagnostic.severity.ERROR] = diagnostic.message,
+                                    [vim.diagnostic.severity.WARN] = diagnostic.message,
+                                    [vim.diagnostic.severity.INFO] = diagnostic.message,
+                                    [vim.diagnostic.severity.HINT] = diagnostic.message,
+                                }
+                                return diagnostic_message[diagnostic.severity]
+                            end,
+                        },
+                    }
+                end,
+            })
+        end,
     }
 }
