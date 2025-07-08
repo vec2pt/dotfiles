@@ -26,6 +26,17 @@ vim.opt.autoindent = true  -- auto indentation
 vim.opt.smartindent = true
 vim.opt.breakindent = true -- Enable break indent
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "c", "cpp", "arduino", "html", "svg", "xml", "css", "scss", "sacc", "javascript" },
+    callback = function()
+        -- TODO: use ftplugin
+        vim.opt.tabstop = 2
+        vim.opt.softtabstop = 2
+        vim.opt.shiftwidth = 2
+    end,
+})
+
+
 -- Visualizing whitespace
 vim.opt.list = true -- show tab characters and trailing whitespace
 vim.opt.listchars = {
@@ -102,9 +113,15 @@ vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpo
 -- vim.o.inccommand = 'split'
 
 -- Spell Checking
--- vim.opt.spell = true
--- vim.opt.spelllang = "en,pl"
--- vim.opt.spelloptions = 'camel'
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "markdown" },
+    callback = function()
+        -- TODO: use ftplugin
+        vim.opt.spell = true
+        vim.opt.spelllang = "en,pl"
+        vim.opt.spelloptions = 'camel'
+    end,
+})
 
 -- vim.opt.fixendofline = false
 -- vim.opt.completeopt = { "menu", "menuone", "noselect" }

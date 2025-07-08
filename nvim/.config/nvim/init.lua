@@ -6,7 +6,7 @@
 -- https://github.com/LazyVim
 -- https://github.com/LunarVim/Neovim-from-scratch
 --
--- https://martinlwx.github.io/en/config-neovim-from-scratch/#refs
+-- https://martinlwx.github.io/en/config-neovim-from-scratch
 
 require("keymaps")
 require("options")
