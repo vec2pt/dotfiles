@@ -22,11 +22,21 @@ return {
             vim.keymap.set('n', '<leader>fj', builtin.jumplist, { desc = 'Telescope jumplist' })
             vim.keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, { desc = 'Lists LSP document symbols' })
             vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Lists Diagnostics' })
+
+            vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = 'Telescope keymaps' })
+            vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'Telescope search current word' })
+            vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'Telescope resume' })
+            vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = 'Telescope recent files' })
+            vim.keymap.set('n', '<leader>f/', builtin.current_buffer_fuzzy_find,
+                { desc = 'Telescope search in current buffer' })
+
+            -- TODO Rename it
             vim.keymap.set("n", "<leader>co", function()
                 require('telescope.builtin').find_files {
                     cwd = vim.fn.stdpath("config")
                 }
             end, { desc = "Config open" })
+
             require('telescope').load_extension('fzf')
         end
     },

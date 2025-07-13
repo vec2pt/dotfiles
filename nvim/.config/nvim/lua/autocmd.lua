@@ -1,6 +1,7 @@
 -- Return to last edit position when opening files
 vim.api.nvim_create_autocmd("BufReadPost", {
     desc = "Return to last edit position when opening files",
+    group = vim.api.nvim_create_augroup('ReturnToLastEditPosition', {}),
     pattern = "*",
     callback = function()
         if vim.fn.line("'\"") > 0 and vim.fn.line("'\"") <= vim.fn.line("$") then
@@ -9,26 +10,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
--- Removes trailing spaces
--- https://vi.stackexchange.com/questions/37421/how-to-remove-neovim-trailing-white-space
+-- Cleanup on save
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    desc = "Removes trailing spaces",
+    desc = "Cleanup on save",
+    group = vim.api.nvim_create_augroup('CleanupOnSave', {}),
     pattern = "*",
     callback = function()
         local save_cursor = vim.fn.getpos(".")
-        vim.cmd([[%s/\s\+$//e]])
-        vim.fn.setpos(".", save_cursor)
-    end,
-})
-
--- Insert final newline
--- https://www.reddit.com/r/neovim/comments/11269m2/newline_at_the_end/
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    desc = "Insert final newline",
-    pattern = "*",
-    callback = function()
-        local save_cursor = vim.fn.getpos(".")
-        vim.cmd([[%s/\n*\%$/\r/e]])
+        -- Removes trailing spaces & Remove blank lines at end of file
+        -- https://vi.stackexchange.com/questions/44204/remove-blank-lines-at-end-of-file
+        vim.cmd([[%s/\s\+$//e|%s/\_s*\%$//e]])
         vim.fn.setpos(".", save_cursor)
     end,
 })
@@ -36,20 +27,38 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking (copying) text",
-    group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+    group = vim.api.nvim_create_augroup("HighlightYank", { clear = true }),
     callback = function()
         vim.highlight.on_yank()
     end,
 })
 
+-- Create directories when saving files
+vim.api.nvim_create_autocmd("BufWritePre", {
+    desc = "Create directories when saving files",
+    group = vim.api.nvim_create_augroup("CreateDirWhenSaving", {}),
+    callback = function()
+        local dir = vim.fn.expand('<afile>:p:h')
+        if vim.fn.isdirectory(dir) == 0 then
+            vim.fn.mkdir(dir, 'p')
+        end
+    end,
+})
+
+--------------------------------------------------------------------------------
+
 -- Session management
 -- https://aymanbagabas.com/blog/2023/04/13/simple-vim-session-management.html
+-- BUG with Netrw?
+
+local session_management_augroup = vim.api.nvim_create_augroup('SessionManagement', {})
+
 vim.api.nvim_create_autocmd("VimEnter", {
+    desc = "Session management: Create new / Open existing session",
+    group = session_management_augroup,
     callback = function(data)
         local isdirectory = vim.fn.isdirectory(data.file) == 1
-        if not isdirectory then
-            return
-        end
+        if not isdirectory then return end
 
         vim.g.save_session = false
 
@@ -74,10 +83,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 vim.api.nvim_create_autocmd("VimLeave", {
+    desc = "Session management: Save session",
+    group = session_management_augroup,
     callback = function()
-        if not vim.g.save_session then
-            return
-        end
+        if not vim.g.save_session then return end
 
         local sessionfile = ".nvim/Session.vim"
         if vim.v.this_session ~= "" then

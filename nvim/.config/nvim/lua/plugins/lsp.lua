@@ -76,6 +76,10 @@ return {
                     vim.keymap.set('n', 'grt', require('telescope.builtin').lsp_type_definitions,
                         { buffer = args.buf, desc = 'LSP: [G]oto [T]ype Definition' })
 
+
+                    vim.keymap.set('n', 'grf', vim.lsp.buf.format,
+                        { buffer = args.buf, desc = 'LSP: [F]ormat' })
+
                     -- Enable auto-completion
                     -- Optional: trigger autocompletion on EVERY keypress. May be slow!
                     -- if client:supports_method('textDocument/completion') then
@@ -127,7 +131,7 @@ return {
                         severity_sort = true,
                         float = { border = 'rounded', source = 'if_many' },
                         underline = { severity = vim.diagnostic.severity.ERROR },
-                        signs = vim.g.have_nerd_font and {
+                        signs = {
                             text = {
                                 [vim.diagnostic.severity.ERROR] = '󰅚 ',
                                 [vim.diagnostic.severity.WARN] = '󰀪 ',
