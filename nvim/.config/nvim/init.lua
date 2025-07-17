@@ -11,6 +11,7 @@
 -- https://martinlwx.github.io/en/config-neovim-from-scratch
 -- https://github.com/radleylewis/nvim-lite
 -- https://github.com/zazencodes/dotfiles/tree/year/2025
+-- https://github.com/boltlessengineer/NativeVim
 
 require("keymaps")
 require("options")

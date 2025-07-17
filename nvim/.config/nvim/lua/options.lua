@@ -8,10 +8,10 @@ vim.opt.number = true
 vim.opt.numberwidth = 4
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
-vim.opt.colorcolumn = '81'
-vim.opt.signcolumn = 'yes' -- Keep signcolumn on by default
+vim.opt.colorcolumn = "81"
+vim.opt.signcolumn = "yes" -- Keep signcolumn on by default
 vim.opt.confirm = true
-vim.o.inccommand = 'split'
+vim.opt.inccommand = "split"
 -- vim.opt.showmatch = true -- ?
 -- vim.opt.matchtime = 2
 -- vim.opt.completeopt = "menuone,noinsert,noselect" -- { "menu", "menuone", "noselect" }
@@ -27,7 +27,7 @@ vim.opt.smartindent = true
 -- Wrapped lines
 vim.opt.breakindent = true -- Enable break indent
 vim.opt.linebreak = true
-vim.opt.showbreak = '↳'
+vim.opt.showbreak = "↳"
 
 -- Search
 vim.opt.ignorecase = true -- ignore case when searching
@@ -47,21 +47,22 @@ vim.opt.mouse = "a"
 vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
 -- vim.opt.iskeyword:append("-")
 -- vim.opt.path:append("**")
--- vim.opt.whichwrap:append('<,>,h,l,[,]')
+vim.opt.whichwrap:append("<,>,h,l,[,]")
 -- vim.opt.virtualedit = "block"
 -- vim.opt.autochdir = true
+-- vim.opt.autowrite = true
 
 -- Render whitespace
 vim.opt.list = true
 vim.opt.listchars = {
-    tab            = '» ',
-    trail          = '·',
-    nbsp           = '␣',
+    tab            = "» ",
+    trail          = "·",
+    nbsp           = "␣",
     -- leadmultispace = "│   ",
-    leadmultispace = ' ',
-    multispace     = '·',
-    extends        = '→',
-    precedes       = '←'
+    leadmultispace = " ",
+    multispace     = "·",
+    extends        = "→",
+    precedes       = "←"
 }
 
 -- Scroll
@@ -75,16 +76,28 @@ vim.opt.sidescrolloff = 5 -- minimum number of columns to keep above and below t
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- Folding
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
 -- Session
 vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Command-line completion
 -- vim.opt.wildmenu = true
--- vim.opt.wildoptions = 'fuzzy,pum,tagfile'
+-- vim.opt.wildmode = "longest:full,full"
+-- vim.opt.wildoptions = "fuzzy,pum,tagfile"
 
 -- Performance improvements
 -- vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
+
+-- Netrw (TODO)
+-- https://vonheikemen.github.io/devlog/tools/using-netrw-vim-builtin-file-explorer/
+vim.g.netrw_keepdir = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_list_style = 3
 
 --------------------------------------------------------------------------------
 -- Filetype-specific settings
@@ -114,6 +127,6 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.opt_local.spell = true
         vim.opt_local.spelllang = "en,pl"
-        vim.opt_local.spelloptions = 'camel'
+        vim.opt_local.spelloptions = "camel"
     end,
 })
