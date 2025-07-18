@@ -12,6 +12,8 @@
 -- https://github.com/radleylewis/nvim-lite
 -- https://github.com/zazencodes/dotfiles/tree/year/2025
 -- https://github.com/boltlessengineer/NativeVim
+-- https://github.com/nickjj/dotfiles/tree/master/.config/nvim
+-- https://github.com/hendrikmi/dotfiles/tree/main/nvim
 
 require("keymaps")
 require("options")

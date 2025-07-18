@@ -62,13 +62,39 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>")
 
--- https://www.youtube.com/watch?v=ooTcnx066Do&list=PLep05UYkc6wTyBe7kPjQFWVXTlhKeQejM&index=13
-vim.keymap.set("n", "<Leader>tt", function()
-    vim.cmd.vnew()
-    vim.cmd.term()
-    vim.cmd.wincmd("J")
-    vim.api.nvim_win_set_height(0, 10)
-end, { desc = "Toggle Terminal" })
+local terminal_state = { buf = nil, win = nil }
+
+local function toggle_terminal()
+    -- If terminal is already open, close it (toggle behavior)
+    if terminal_state.win and vim.api.nvim_win_is_valid(terminal_state.win) then
+        vim.api.nvim_win_close(terminal_state.win, false)
+        -- TODO ??
+        -- vim.api.nvim_win_hide(terminal_state.win)
+        return
+    end
+
+
+    -- Create buffer if it doesn't exist or is invalid
+    if not terminal_state.buf or not vim.api.nvim_buf_is_valid(terminal_state.buf) then
+        terminal_state.buf = vim.api.nvim_create_buf(false, true)
+    end
+
+    -- Create the window
+    terminal_state.win = vim.api.nvim_open_win(terminal_state.buf, true, {
+        split = "below",
+        height = 10,
+    })
+
+    -- Start terminal if not already running
+    if vim.bo[terminal_state.buf].buftype ~= "terminal" then
+        vim.cmd.terminal()
+    end
+end
+
+vim.keymap.set("n", "<Leader>tt", toggle_terminal, { noremap = true, silent = true, desc = "Toggle terminal" })
+
+
+--------------------------------------------------------------------------------
 
 -- Explore
 vim.keymap.set("n", "<Leader>te", "<Cmd>Lexplore<CR>", { desc = "Toggle file explorer" })
@@ -82,6 +108,10 @@ vim.keymap.set("n", "<Leader>te", "<Cmd>Lexplore<CR>", { desc = "Toggle file exp
 -- Diagnostic keymaps
 vim.keymap.set("n", "<Leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<Leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+
+-- Toggle
+vim.keymap.set("n", "<Leader>tw", "<Cmd>set wrap!<CR>", { desc = "Toggle line wrap" })
+vim.keymap.set("n", "<Leader>ts", "<Cmd>set spell!<CR>", { desc = "Toggle spell" })
 
 --------------------------------------------------------------------------------
 

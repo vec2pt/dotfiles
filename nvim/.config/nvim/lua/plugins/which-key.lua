@@ -3,9 +3,13 @@ return {
         "folke/which-key.nvim",
         event = "VeryLazy",
         opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
+            delay = 0,
+            -- Document existing key chains
+            spec = {
+                { "<leader>f", group = "[F]ind" },
+                { "<leader>t", group = "[T]oggle" },
+                { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+            },
         },
         keys = {
             {

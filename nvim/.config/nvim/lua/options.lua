@@ -3,13 +3,13 @@
 --------------------------------------------------------------------------------
 
 -- UI
-vim.opt.termguicolors = true -- Enable true color support
+vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.numberwidth = 4
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.colorcolumn = "81"
-vim.opt.signcolumn = "yes" -- Keep signcolumn on by default
+vim.opt.signcolumn = "yes"
 vim.opt.confirm = true
 vim.opt.inccommand = "split"
 -- vim.opt.showmatch = true -- ?
@@ -17,27 +17,27 @@ vim.opt.inccommand = "split"
 -- vim.opt.completeopt = "menuone,noinsert,noselect" -- { "menu", "menuone", "noselect" }
 
 -- Indentation
-vim.opt.tabstop = 4       -- insert 4 spaces for a tab
-vim.opt.softtabstop = 4   -- number of columns for a tab
-vim.opt.shiftwidth = 4    -- the number of spaces inserted for each indentation
-vim.opt.expandtab = true  -- convert tabs to whitespace
-vim.opt.autoindent = true -- auto indentation
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
 vim.opt.smartindent = true
 
 -- Wrapped lines
-vim.opt.breakindent = true -- Enable break indent
+vim.opt.breakindent = true
 vim.opt.linebreak = true
 vim.opt.showbreak = "↳"
 
 -- Search
-vim.opt.ignorecase = true -- ignore case when searching
-vim.opt.smartcase = true  -- unless capital letter in search
-vim.opt.incsearch = true  -- search as characters are entered
-vim.opt.hlsearch = true   -- do not highlight matches
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.incsearch = true
+vim.opt.hlsearch = true
 
 -- File handling
 vim.opt.swapfile = false
-vim.opt.undofile = true -- Save undo history
+vim.opt.undofile = true
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 
@@ -66,8 +66,8 @@ vim.opt.listchars = {
 }
 
 -- Scroll
-vim.opt.scrolloff = 5     -- minimum number of lines to keep above and below the cursor
-vim.opt.sidescrolloff = 5 -- minimum number of columns to keep above and below the cursor
+vim.opt.scrolloff = 5
+vim.opt.sidescrolloff = 5
 
 -- Tabs
 -- vim.opt.showtabline = 2
