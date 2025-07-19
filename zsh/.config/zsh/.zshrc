@@ -67,7 +67,8 @@ setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks from each command line
 ################################################################################
 
 # Configure keybindings
-bindkey -e                          # emacs key bindings
+# bindkey -e                          # emacs key bindings
+bindkey -v                          # vim key bindings
 bindkey ' ' magic-space             # do history expansion on space
 bindkey '^[[3~' delete-char         # delete
 bindkey '^[[1;5C' forward-word      # ctrl + ->
@@ -168,4 +169,3 @@ eval "$(pyenv init - zsh)"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
-
