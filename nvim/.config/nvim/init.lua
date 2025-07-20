@@ -11,7 +11,7 @@
 -- https://martinlwx.github.io/en/config-neovim-from-scratch
 -- https://github.com/radleylewis/nvim-lite
 -- https://github.com/zazencodes/dotfiles/tree/year/2025
--- https://github.com/boltlessengineer/NativeVim
+-- https://boltless.me/posts/neovim-config-without-plugins-2025 / https://github.com/boltlessengineer/NativeVim
 -- https://github.com/nickjj/dotfiles/tree/master/.config/nvim
 -- https://github.com/hendrikmi/dotfiles/tree/main/nvim
 
