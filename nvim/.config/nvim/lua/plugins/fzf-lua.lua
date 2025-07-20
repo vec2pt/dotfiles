@@ -17,7 +17,7 @@ return {
 
             vim.keymap.set("n", "<leader>fj", builtin.jumps, { desc = "FZF jumplist" })
             vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "Lists LSP document symbols" })
-            vim.keymap.set("n", "<leader>fd", builtin.diagnostics_document, { desc = "Lists Diagnostics" })
+            vim.keymap.set("n", "<leader>dl", builtin.diagnostics_document, { desc = "Lists Diagnostics" })
 
             vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "FZF keymaps" })
             vim.keymap.set("n", "<leader>fw", builtin.grep_cword, { desc = "FZF search current word" })

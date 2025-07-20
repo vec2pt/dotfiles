@@ -106,8 +106,8 @@ vim.keymap.set("n", "<Leader>te", "<Cmd>Lexplore<CR>", { desc = "Toggle file exp
 -- vim.keymap.set("n", "<Leader>cr", "<Cmd>luafile $MYVIMRC<CR>", { desc = "Config reload" })
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "<Leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<Leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<Leader>de", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
+vim.keymap.set("n", "<Leader>dq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Toggle
 vim.keymap.set("n", "<Leader>tw", "<Cmd>set wrap!<CR>", { desc = "Toggle line wrap" })

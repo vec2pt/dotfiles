@@ -18,7 +18,7 @@ return {
 
             vim.keymap.set("n", "<leader>fj", builtin.jumplist, { desc = "Telescope jumplist" })
             vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "Lists LSP document symbols" })
-            vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Lists Diagnostics" })
+            vim.keymap.set("n", "<leader>dl", builtin.diagnostics, { desc = "Lists Diagnostics" })
 
             vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Telescope keymaps" })
             vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Telescope search current word" })
