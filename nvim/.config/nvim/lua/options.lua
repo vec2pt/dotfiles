@@ -14,7 +14,6 @@ vim.opt.confirm = true
 vim.opt.inccommand = "split"
 -- vim.opt.showmatch = true -- ?
 -- vim.opt.matchtime = 2
--- vim.opt.completeopt = "menuone,noinsert,noselect" -- { "menu", "menuone", "noselect" }
 
 -- Indentation
 vim.opt.tabstop = 4
@@ -23,6 +22,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+vim.opt.shiftround = true
 
 -- Wrapped lines
 vim.opt.breakindent = true
@@ -50,7 +50,7 @@ vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
 vim.opt.whichwrap:append("<,>,h,l,[,]")
 -- vim.opt.virtualedit = "block"
 -- vim.opt.autochdir = true
--- vim.opt.autowrite = true
+vim.opt.autowrite = true
 
 -- Render whitespace
 vim.opt.list = true
@@ -82,12 +82,15 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Session
-vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.opt.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Command-line completion
 -- vim.opt.wildmenu = true
 -- vim.opt.wildmode = "longest:full,full"
 -- vim.opt.wildoptions = "fuzzy,pum,tagfile"
+
+-- Insert mode completion
+-- vim.opt.completeopt = "menuone,noinsert,noselect" -- { "menu", "menuone", "noselect" }
 
 -- Performance improvements
 -- vim.opt.redrawtime = 10000
@@ -97,7 +100,13 @@ vim.opt.maxmempattern = 20000
 -- https://vonheikemen.github.io/devlog/tools/using-netrw-vim-builtin-file-explorer/
 vim.g.netrw_keepdir = 0
 vim.g.netrw_banner = 0
-vim.g.netrw_list_style = 3
+vim.g.netrw_liststyle = 3
+
+-- Disable unused providers
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
 
 --------------------------------------------------------------------------------
 -- Filetype-specific settings

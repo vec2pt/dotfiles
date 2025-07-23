@@ -34,8 +34,10 @@ vim.keymap.set("n", "<C-Right>", "<Cmd>vertical resize +2<CR>", { desc = "Increa
 -- Move lines up/down
 vim.keymap.set("n", "<A-j>", "<Cmd>m .+1<CR>==", { desc = "Move line down" })
 vim.keymap.set("n", "<A-k>", "<Cmd>m .-2<CR>==", { desc = "Move line up" })
-vim.keymap.set("v", "<A-j>", "<Cmd>m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("v", "<A-k>", "<Cmd>m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("i", "<A-j>", "<Esc><Cmd>m .+1<CR>==gi", { desc = "Move line down" })
+vim.keymap.set("i", "<A-k>", "<Esc><Cmd>m .-2<CR>==gi", { desc = "Move line up" })
 
 -- Splitting
 -- Use "CTRL-W s" and "CTRL-W v"
