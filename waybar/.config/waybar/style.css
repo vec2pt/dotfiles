@@ -34,7 +34,8 @@ window#waybar {
 }
 
 #taskbar button.focused,
-#workspaces button.focused {
+#workspaces button.focused,
+#workspaces button.active {
   color: @base07;
   background-color: @base03;
   box-shadow: inset 0 -3px @base0D;

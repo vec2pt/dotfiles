@@ -9,10 +9,12 @@
     "modules-left": [
         "sway/workspaces",
         "sway/mode",
-        "sway/scratchpad"
+        "sway/scratchpad",
         // "wlr/taskbar"
+        "hyprland/workspaces",
+        "hyprland/submap"
     ],
-    "modules-center": [ "sway/window" ],
+    "modules-center": [ "sway/window", "hyprland/window" ],
     "modules-right": [
         // "cpu",
         // "temperature",
@@ -27,6 +29,7 @@
         "battery",
         // "keyboard-state",
         "sway/language",
+        "hyprland/language",
         "clock"
     ],
 
@@ -163,6 +166,10 @@
     "sway/language": {
         "format": "{}",
         "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
+    },
+    "hyprland/language": {
+        "format-en": "EN",
+        "format-pl": "PL"
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",

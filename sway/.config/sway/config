@@ -23,7 +23,7 @@ set $window_switcher rofi -show window
 set $lock swaylock
 
 # Scripts
-set $rofi_power_menu rofi-power-menu
+set $rofi_power_menu ~/.local/bin/rofi-power-menu
 set $rofi_screenshoot rofi-screenshoot
 
 ################################################################################
