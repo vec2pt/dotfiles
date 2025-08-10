@@ -36,6 +36,16 @@ fi
 export BAT_THEME="OneHalfDark"
 export BAT_STYLE="numbers,changes"
 
+# Config `fzf`
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_DEFAULT_OPTS='
+    --layout reverse
+    --color=fg:#abb2bf,bg:#282c34,hl:#61afef
+    --color=fg+:#c8ccd4,bg+:#3e4451,hl+:#56b6c2
+    --color=info:#e5c07b,prompt:#e06c75,pointer:#c678dd
+    --color=marker:#98c379,spinner:#c678dd,header:#98c379
+'
+
 ################################################################################
 # Window manager
 ################################################################################
@@ -45,3 +55,7 @@ export BAT_STYLE="numbers,changes"
 #     exec sway
 # fi
 
+# https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login
+if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
+    exec startx
+fi
