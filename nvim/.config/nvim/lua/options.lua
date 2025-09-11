@@ -130,6 +130,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Spell Checking
+vim.opt.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup,
     pattern = { "markdown" },
