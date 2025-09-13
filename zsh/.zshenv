@@ -1,5 +1,6 @@
 ################################################################################
 # Environment variables
+# https://wiki.archlinux.org/title/Environment_variables
 ################################################################################
 
 # XDG
@@ -9,11 +10,13 @@
 [ -z "$XDG_STATE_HOME" ] && export XDG_STATE_HOME="$HOME/.local/state"
 
 # Default programs
+# https://wiki.archlinux.org/title/Environment_variables#Default_programs
 # export TERM="alacritty"
 export PAGER="less -RF"
-export MANPAGER="nvim +Man!"
-# [ -n "$DISPLAY" ] && export EDITOR="codium" || export EDITOR="nvim"
-# export VISUAL="nvim"
+# export MANPAGER="nvim +Man!"
+export MANPAGER="vim +MANPAGER --not-a-term -"
+export EDITOR="nvim"
+export VISUAL="nvim"
 # [ -n "$DISPLAY" ] && export BROWSER="librewolf"
 
 # zsh
@@ -34,7 +37,7 @@ fi
 
 # Config `bat`
 export BAT_THEME="OneHalfDark"
-export BAT_STYLE="numbers,changes"
+export BAT_STYLE="plain" # "numbers,changes"
 
 # Config `fzf`
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'

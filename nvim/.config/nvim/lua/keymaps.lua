@@ -16,6 +16,20 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" }
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 
+-- Keep indentation after pressing Esc
+-- https://stackoverflow.com/questions/10364067/how-to-preserve-indent-after-pressing-esc-in-vim/30749672#30749672
+vim.keymap.set("n", "o", "o <BS>", { desc = "Begin a new line below the cursor and insert text" })
+vim.keymap.set("n", "O", "O <BS>", { desc = "Begin a new line above the cursor and insert text" })
+
+-- Autopairs - Automatic closing brackets
+-- https://stackoverflow.com/questions/21316727/automatic-closing-brackets-for-vim
+vim.keymap.set("i", "\"", "\"\"<left>", { desc = "" })
+vim.keymap.set("i", "'", "''<left>", { desc = "" })
+vim.keymap.set("i", "(", "()<left>", { desc = "" })
+vim.keymap.set("i", "[", "[]<left>", { desc = "" })
+vim.keymap.set("i", "{", "{}<left>", { desc = "" })
+vim.keymap.set("i", "{<CR>", "{<CR>}<ESC>O", { desc = "" })
+
 -- Better J behavior
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 

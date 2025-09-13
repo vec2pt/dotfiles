@@ -170,7 +170,7 @@ alias weather='curl wttr.in/Warsaw; echo'
 
 # `cat` alternative
 command_exists batcat && alias bat='batcat'
-# command_exists bat && alias cat='batcat'
+command_exists bat && alias cat='batcat'
 
 # find alternative
 command_exists fdfind && alias fd='fdfind'
