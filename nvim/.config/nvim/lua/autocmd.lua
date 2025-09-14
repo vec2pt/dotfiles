@@ -97,3 +97,20 @@ vim.api.nvim_create_autocmd("VimLeave", {
         vim.cmd("mksession! " .. sessionfile)
     end,
 })
+
+--------------------------------------------------------------------------------
+
+-- (Temporary) AutoFormat fir Ruff - https://docs.astral.sh/ruff/formatter/#sorting-imports
+
+local autoformat_augroup = vim.api.nvim_create_augroup('AutoFormat', {})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+    desc = "Ruff format on seve.",
+    pattern = "*.py",
+    group = autoformat_augroup,
+    callback = function()
+        vim.cmd("silent !ruff check --select I --fix %")
+        vim.cmd("silent !ruff format %")
+        -- vim.cmd("edit")
+    end,
+})

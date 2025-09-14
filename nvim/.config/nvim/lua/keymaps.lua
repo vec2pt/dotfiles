@@ -23,8 +23,10 @@ vim.keymap.set("n", "O", "O <BS>", { desc = "Begin a new line above the cursor a
 
 -- Autopairs - Automatic closing brackets
 -- https://stackoverflow.com/questions/21316727/automatic-closing-brackets-for-vim
+-- TODO: Test: https://github.com/windwp/nvim-autopairs
 vim.keymap.set("i", "\"", "\"\"<left>", { desc = "" })
 vim.keymap.set("i", "'", "''<left>", { desc = "" })
+vim.keymap.set("i", "`", "``<left>", { desc = "" })
 vim.keymap.set("i", "(", "()<left>", { desc = "" })
 vim.keymap.set("i", "[", "[]<left>", { desc = "" })
 vim.keymap.set("i", "{", "{}<left>", { desc = "" })
