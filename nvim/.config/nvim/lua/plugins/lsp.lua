@@ -42,7 +42,10 @@ return {
             --         },
             --     },
             -- })
-            vim.lsp.enable({ "pyright", "ruff" })         -- Python
+            vim.lsp.enable({"ruff", "pyright"})         -- Python
+            vim.lsp.config("ruff", {
+                init_options = { settings = { lineLength = 80 } }
+            })
             vim.lsp.enable("bashls")                      -- Bash
             vim.lsp.enable({ "html", "cssls", "jsonls" }) -- HTML / CSS / Json
             vim.lsp.config("jsonls", {

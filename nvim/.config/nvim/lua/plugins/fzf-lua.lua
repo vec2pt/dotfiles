@@ -7,7 +7,7 @@ return {
             { "fzf-native", "hide" }
         },
         config = function()
-            require("fzf-lua").setup()
+            require("fzf-lua").setup { winopts = { split = "belowright new" } }
             local builtin = require("fzf-lua")
             vim.keymap.set("n", "<leader>ff", builtin.files, { desc = "FZF find files" })
 

@@ -110,7 +110,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     group = autoformat_augroup,
     callback = function()
         vim.cmd("silent !ruff check --select I --fix %")
-        vim.cmd("silent !ruff format %")
+        vim.cmd("silent !ruff format --line-length 80 %")
         -- vim.cmd("edit")
     end,
 })
