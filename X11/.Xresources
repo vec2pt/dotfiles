@@ -1,0 +1,48 @@
+!!! Xcolors (default)
+#include "Xcolors/base16-onedark.Xresources"
+
+!!! Applications without Fontconfig support
+!!! https://wiki.archlinux.org/title/Font_configuration#Applications_without_Fontconfig_support
+Xft.autohint: true
+! Xft.autohint: false
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: true
+Xft.antialias: true
+Xft.rgba: rgb
+
+!!! Fonsts
+*.font: \
+    xft:Hack:style=Regular:size=12:antialias=true:autohint=true, \
+    xft:Hack Nerd Font:style=Regular:size=12:antialias=true:autohint=true, \
+	xft:Noto Color Emoji:pixelsize=12:antialias=true:autohint=true, \
+	xft:Symbols Nerd Font:pixelsize=12:antialias=true:autohint=true
+
+
+!!! URxvt Appearance
+
+URxvt.geometry: 400x400
+URxvt.internalBorder: 8
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.saveline: 4096
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.urgentOnBell: true
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+!! Copy / Paste
+!! https://unix.stackexchange.com/questions/294337/rebinding-ctrl-alt-cv-to-ctrl-shift-cv-in-urxvt-9-20
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Control-Meta-c: builtin-string:
+URxvt.keysym.Control-Meta-v: builtin-string:
+
+
+!! Clickable URLs
+!! https://wiki.archlinux.org/title/Rxvt-unicode#Clickable_URLs
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
