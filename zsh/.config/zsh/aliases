@@ -110,7 +110,7 @@ command_exists eza && alias tree='eza -T --group-directories-last'
 ################################################################################
 
 alias mv='mv -iv'
-alias rm='rm -i --preserve-root'
+alias rm='rm -iv --preserve-root'
 alias cp='cp -iv'
 alias ln='ln -iv'
 alias mkdir='mkdir -v'
@@ -124,6 +124,8 @@ alias diffs='diff --side-by-side'
 # alias free='free -m'
 # alias mount='mount | column -t'
 
+alias nsxiv='nsxiv --anti-alias=no -a'
+
 ################################################################################
 # Command shortcuts
 ################################################################################
@@ -131,6 +133,7 @@ alias diffs='diff --side-by-side'
 alias c='clear'
 alias h='history'
 alias j='jobs -l'
+alias o='xdg-open'
 alias q='exit'
 alias e='nvim'
 alias vi='nvim'
@@ -168,6 +171,9 @@ alias weather='curl wttr.in/Warsaw; echo'
 # alias nmapp="nmap -P0 -A --osscan_limit"
 # alias pktstat="sudo pktstat -tBFT"
 
+# `rm` alternative
+# command_exists trash && alias rm='trash -iv'
+
 # `cat` alternative
 command_exists batcat && alias bat='batcat'
 command_exists bat && alias cat='batcat'
@@ -180,6 +186,31 @@ command_exists fdfind && alias fd='fdfind'
 command_exists fzf && alias fcd="cd ~ && cd \$(fd --type d | fzf)"
 command_exists fzf && alias fe="nvim \$(fzf -m)"
 command_exists fzf && alias fman="man -k . | fzf | awk '{print $1}' | xargs -r man"
+
+# nnn
+function n() {
+    # Source: https://github.com/jarun/nnn/blob/master/misc/quitcd/quitcd.bash_sh_zsh
+
+    [ "${NNNLVL:-0}" -eq 0 ] || {
+        echo "nnn is already running"
+        return
+    }
+
+    export NNN_TMPFILE="${XDG_CACHE_HOME:-$HOME/.cache}/.nnnlastdir"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    command nnn "$@"
+
+    [ ! -f "$NNN_TMPFILE" ] || {
+        . "$NNN_TMPFILE"
+        rm -f -- "$NNN_TMPFILE" > /dev/null
+    }
+}
 
 ################################################################################
 # Dev

@@ -156,12 +156,16 @@ fi
 ################################################################################
 
 # Install Ruby Gems to ~/.gems
-# export GEM_HOME="$(gem env user_gemhome)"
-# export PATH="$PATH:$GEM_HOME/bin"
+export GEM_HOME="$(gem env user_gemhome)"
+export PATH="$PATH:$GEM_HOME/bin"
 
 # Install nvm (Node Version Manager)
-# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+function load_nvm {
+    export NVM_DIR="$HOME/.config/nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    nvm use stable
+}
 
 # Install Cargo / Rust
 [ -s "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
@@ -175,3 +179,4 @@ fi
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
