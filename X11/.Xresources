@@ -13,14 +13,12 @@ Xft.rgba: rgb
 
 !!! Fonsts
 *.font: \
-    xft:Hack:style=Regular:size=12:antialias=true:autohint=true, \
     xft:Hack Nerd Font:style=Regular:size=12:antialias=true:autohint=true, \
-	xft:Noto Color Emoji:pixelsize=12:antialias=true:autohint=true, \
-	xft:Symbols Nerd Font:pixelsize=12:antialias=true:autohint=true
-
+    xft:Hack:style=Regular:size=12:antialias=true:autohint=true, \
+    xft:Noto Color Emoji:pixelsize=12:antialias=true:autohint=true, \
+    xft:Symbols Nerd Font:pixelsize=12:antialias=true:autohint=true
 
 !!! URxvt Appearance
-
 URxvt.geometry: 400x400
 URxvt.internalBorder: 8
 URxvt.cursorBlink: true
