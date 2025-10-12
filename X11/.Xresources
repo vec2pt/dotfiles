@@ -48,10 +48,12 @@ URxvt.matcher.button: 1
 
 !!! XTerm / UXTerm
 *.vt100.faceName:Hack Nerd Font:style=Regular:size=12:antialias=true:autohint=true
+*.vt100.internalBorder: 8
+*.vt100.cursorBlink: true
+*.vt100.cursorBar: true
+*.vt100.saveLines: 4096
+
+!! Copy / Paste
 *.vt100.translations: #override \
     Shift Ctrl <Key> C: copy-selection(CLIPBOARD) \n\
     Shift Ctrl <Key> V: insert-selection(CLIPBOARD)
-*.vt100.saveLines: 4096
-*.vt100.cursorBar: true
-*.vt100.cursorBlink: true
-*.vt100.selectToClipboard: true
