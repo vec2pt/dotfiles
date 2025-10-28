@@ -21,8 +21,9 @@
     helper = store
 [help]
     autocorrect = prompt
-# [push]
+[push]
 #     default = simple
+	autoSetupRemote = true
 [pull]
     rebase = false
 [init]
