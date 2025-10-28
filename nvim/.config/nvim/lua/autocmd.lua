@@ -114,3 +114,14 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         -- vim.cmd("edit")
     end,
 })
+
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+    desc = 'shfmt format on save',
+    pattern = "*.sh",
+    group = autoformat_augroup,
+    callback = function()
+        vim.cmd("silent !shfmt -i 4 -ci -w %")
+        -- vim.cmd("edit")
+    end
+})
